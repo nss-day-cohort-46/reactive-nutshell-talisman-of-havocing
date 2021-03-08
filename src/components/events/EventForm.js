@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { EventContext } from "./EventProvider";
 
 export const EmployeeForm = () => {
-    const { events, getEvents, updateEvent, addEvent, getEventById } = useContext(EventContext)
+    const { updateEvent, addEvent, getEventById } = useContext(EventContext)
     const currentUserId = 0
 
     const [event, setEvent] = useState({
@@ -78,21 +78,16 @@ export const EmployeeForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="role">Event Date:</label>
-                    <input type="text" id="role" onChange={handleControlledInputChange} required className="form-control" placeholder="event position" value={event.role} />
+                    <input type="dateTime" id="date" onChange={handleControlledInputChange} required className="form-control" value={event.date} />
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="location">Assign to location: </label>
-                    <select value={event.locationId} name="locationId" id="locationId" onChange={handleControlledInputChange} className="form-control" >
-                        <option value="0">Select a location</option>
-                        {locations.map(l => (
-                            <option key={l.id} value={l.id}>{l.name}</option>
-                        ))}
-                    </select>
+                    <label htmlFor="name">Event Location:</label>
+                    <input type="text" id="location" onChange={handleControlledInputChange} required className="form-control" placeholder="event location" value={event.location} />
                 </div>
             </fieldset>
-            <button disabled={isLoading} className="btn btn-primary" onClick={handleClickSaveEmployee}>{eventId ? "Submit Edit" : "Save New Employee"}</button>
+            <button disabled={isLoading} className="btn btn-primary" onClick={handleClickSaveEmployee}>{eventId ? "Submit Edit" : "Save New Event"}</button>
             <button className="btn" onClick={handleCancel}>Cancel</button>
         </form>
     )
