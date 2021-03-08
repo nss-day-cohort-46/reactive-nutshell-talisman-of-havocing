@@ -5,6 +5,7 @@ import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import "./Nutshell.css"
+import { TaskProvider } from './tasks/TaskProvider'
 
 export const Nutshell = () => (
   <>
@@ -13,8 +14,10 @@ export const Nutshell = () => (
         if (sessionStorage.getItem("nutshell_user")) {
           return (
             <>
+            <TaskProvider>
               <NavBar />
               <ApplicationViews />
+            </TaskProvider>
             </>
           )
         } else {
