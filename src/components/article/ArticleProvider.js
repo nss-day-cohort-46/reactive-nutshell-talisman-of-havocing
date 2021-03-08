@@ -9,7 +9,7 @@ export const ArticleProvider = (props) => {
 
     const [ searchTerms, setSearchTerms ] = useState("")
 
-    // useState([])  is to hold and set the array of article
+    // useState([])  is to hold and set the array of articles
     // useState() hook to define a variable that holds the state of the component, and a function that updates it.
 
     const getArticles = () => {
@@ -31,7 +31,7 @@ const addArticle = articlesObj => {
 
 
 const getArticleById = (id) => {
-    return fetch(`http://localhost:8088/articles/${id}?_expand=location&_expand=customer`)
+    return fetch(`http://localhost:8088/articles/${id}?`)
         .then(res => res.json())
 }
 
