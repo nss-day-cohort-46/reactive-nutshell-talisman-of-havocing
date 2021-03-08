@@ -4,10 +4,11 @@ import { useHistory, useParams } from 'react-router-dom';
 import { EventContext } from "./EventProvider";
 
 export const EmployeeForm = () => {
-    const { events, getEvents, updateEvent } = useContext(EventContext)
+    const { events, getEvents, updateEvent, addEvent, getEventById } = useContext(EventContext)
+    const currentUserId = 0
 
     const [event, setEvent] = useState({
-        userId: 0,
+        userId: currentUserId,
         name: "",
         date: "",
         location: "",
@@ -21,9 +22,6 @@ export const EmployeeForm = () => {
     const handleControlledInputChange = (event) => {
         const newEvent = { ...event }
         let selectedVal = event.target.value
-        if (event.target.id.includes("Id")) {
-            selectedVal = parseInt(selectedVal)
-        }
         newEvent[event.target.id] = selectedVal
         setEvent(newEvent)
     }
@@ -36,16 +34,17 @@ export const EmployeeForm = () => {
         } else {
             setIsLoading(true)
             if (eventId) {
-                updateEmployee({
+                updateEvent({
                     id: event.id,
+                    userId: event.userId,
                     name: event.name,
-                    role: event.role,
-                    locationId: parseInt(event.locationId),
+                    date: event.date,
+                    location: event.location,
                 })
-                    .then(() => history.push(`/event/detail/${event.id}`))
+                    .then(() => history.push(`/events/detail/${event.id}`))
             } else {
-                addEmployee(event)
-                    .then(() => history.push("/employees"))
+                addEvent(event)
+                    .then(() => history.push("/events"))
             }
         }
     }
@@ -56,31 +55,29 @@ export const EmployeeForm = () => {
     }
 
     useEffect(() => {
-        getLocations().then(() => {
-            if (eventId) {
-                getEmployeeById(eventId)
-                    .then(event => {
-                        setEmployee(event)
-                        setIsLoading(false)
-                    })
-            } else {
-                setIsLoading(false)
-            }
-        })
+        if (eventId) {
+            getEventById(eventId)
+                .then(event => {
+                    setEvent(event)
+                    setIsLoading(false)
+                })
+        } else {
+            setIsLoading(false)
+        }
     }, [])
 
     return (
-        <form className="employeeForm">
-            <h2 className="employeeForm__title">{eventId ? "Edit Employee" : "Add Employee"}</h2>
+        <form className="eventForm">
+            <h2 className="eventForm__title">{eventId ? "Edit Event" : "Add Event"}</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="name">Employee name:</label>
+                    <label htmlFor="name">Event name:</label>
                     <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="event name" value={event.name} />
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="role">Employee role:</label>
+                    <label htmlFor="role">Event Date:</label>
                     <input type="text" id="role" onChange={handleControlledInputChange} required className="form-control" placeholder="event position" value={event.role} />
                 </div>
             </fieldset>
