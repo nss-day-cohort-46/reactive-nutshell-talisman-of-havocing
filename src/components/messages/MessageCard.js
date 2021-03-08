@@ -1,12 +1,10 @@
 import React from "react"
-import { Link } from "react-router-dom"
 
 
-//messageInstance.location.name? Because expand in the provider. Not recommended.
-
+//HTML to display individual messages
 export const MessageCard = ({ messageInstance }) => (
     <section className="message">
-        <h3 className="messagetimeStamp">{ messageInstance.timeStamp }</h3>
+        <h5 className="messagetimeStamp">Date: { messageInstance.timeStamp }</h5>
         <div className="messageText">{ messageInstance.text }</div>
     </section>
 )
