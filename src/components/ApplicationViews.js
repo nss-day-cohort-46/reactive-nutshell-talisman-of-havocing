@@ -1,19 +1,13 @@
 import React, { useContext, useEffect } from "react"
 import { Route } from "react-router-dom"
-import { EventContext } from "./events/EventProvider"
+import { EventForm } from "./events/EventForm"
 
 export const ApplicationViews = () => {
-  const { events, getEvents } = useContext(EventContext)
-
-  useEffect(() => {
-    getEvents()
-  }, [])
-
   return (
     <>
 
       <Route exact path="/">
-          {events ? console.log("events", events) : console.log("no data")}
+          <EventForm />
       </Route>
       <Route path="/friends">
         {/* Render the component for list of friends */}

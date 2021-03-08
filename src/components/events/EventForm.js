@@ -3,11 +3,11 @@ import "./Event.css"
 import { useHistory, useParams } from 'react-router-dom';
 import { EventContext } from "./EventProvider";
 
-export const EmployeeForm = () => {
+export const EventForm = () => {
     const { updateEvent, addEvent, getEventById } = useContext(EventContext)
     const currentUserId = 0
 
-    const [event, setEvent] = useState({
+    const [anEvent, setEvent] = useState({
         userId: currentUserId,
         name: "",
         date: "",
@@ -20,32 +20,27 @@ export const EmployeeForm = () => {
 
 
     const handleControlledInputChange = (event) => {
-        const newEvent = { ...event }
-        let selectedVal = event.target.value
-        newEvent[event.target.id] = selectedVal
+        const newEvent = { ...anEvent }
+        newEvent[event.target.id] = event.target.value
         setEvent(newEvent)
     }
 
     const handleClickSaveEmployee = (event) => {
         event.preventDefault()
 
-        if (eventId === 0) {
-            window.alert("Please select a location")
+        setIsLoading(true)
+        if (eventId) {
+            updateEvent({
+                id: anEvent.id,
+                userId: anEvent.userId,
+                name: anEvent.name,
+                date: anEvent.date,
+                location: anEvent.location,
+            })
+                .then(() => history.push(`/events/detail/${anEvent.id}`))
         } else {
-            setIsLoading(true)
-            if (eventId) {
-                updateEvent({
-                    id: event.id,
-                    userId: event.userId,
-                    name: event.name,
-                    date: event.date,
-                    location: event.location,
-                })
-                    .then(() => history.push(`/events/detail/${event.id}`))
-            } else {
-                addEvent(event)
-                    .then(() => history.push("/events"))
-            }
+            addEvent(anEvent)
+                .then(() => history.push("/events"))
         }
     }
 
@@ -72,19 +67,19 @@ export const EmployeeForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Event name:</label>
-                    <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="event name" value={event.name} />
+                    <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="event name" value={anEvent.name} />
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="role">Event Date:</label>
-                    <input type="dateTime" id="date" onChange={handleControlledInputChange} required className="form-control" value={event.date} />
+                    <input type="datetime-local" id="date" onChange={handleControlledInputChange} required className="form-control" value={anEvent.date} />
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Event Location:</label>
-                    <input type="text" id="location" onChange={handleControlledInputChange} required className="form-control" placeholder="event location" value={event.location} />
+                    <input type="text" id="location" onChange={handleControlledInputChange} required className="form-control" placeholder="event location" value={anEvent.location} />
                 </div>
             </fieldset>
             <button disabled={isLoading} className="btn btn-primary" onClick={handleClickSaveEmployee}>{eventId ? "Submit Edit" : "Save New Event"}</button>
