@@ -33,10 +33,10 @@ export const Task = ({ task }) =>{
     const taskCompletionDate = new Date(task.completionDate).toLocaleDateString('en-US', {timeZone: "CST"})
  return (<>
     <section className="task">
-        <h3 className="task__name">{task.name}</h3>
-        <div className="task__completionDate">Complete by: {taskCompletionDate}</div>
-        <div>
-            <p>Task Complete</p>
+        <h4 className="task__name">{task.name}</h4>
+        <div className="task__completionDate">Deadline: {taskCompletionDate}</div>
+        <div className="task__checkbox">
+            <p>Completed</p>
             <input type="checkbox" id="taskComplete" onChange={handleControlledInputChange} 
                 required autoFocus className="form-control" value={task.isComplete} defaultChecked={task.isComplete ? true : false} />
         </div>
