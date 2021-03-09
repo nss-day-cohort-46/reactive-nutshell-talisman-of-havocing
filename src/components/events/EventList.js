@@ -6,6 +6,14 @@ import './Event.css'
 export const EventList = () => {
     const { events, getEvents } = useContext(EventContext)
 
+    const sortedEvents = events.slice().sort((a,b) => {
+        const aDate = new Date(a.date)
+        const bDate = new Date(b.date)
+        a.date = aDate
+        b.date = bDate
+        return b.date - a.date
+    })
+
     useEffect(() => {
         getEvents()
     }, [])
@@ -13,7 +21,7 @@ export const EventList = () => {
     return (
         <section className="events">
             <h3 className="eventListH3">Upcoming Events</h3>
-            {events.map(eventObj => {
+            {sortedEvents.map(eventObj => {
                 return <EventCard key={eventObj.id} eventObj={eventObj} />
             })}
         </section>
