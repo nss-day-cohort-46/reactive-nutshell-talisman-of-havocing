@@ -1,24 +1,28 @@
 import { EventContext } from "./EventProvider"
 import { EventCard } from "./EventCard"
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import './Event.css'
 import { useHistory } from "react-router-dom"
 
 export const EventList = () => {
     const { events, getEvents } = useContext(EventContext)
     const history = useHistory()
-
-    const sortedEvents = events.slice().sort((a, b) => {
-        const aDate = new Date(a.date)
-        const bDate = new Date(b.date)
-        a.date = aDate
-        b.date = bDate
-        return a.date - b.date
-    })
+    const [sortedEvents, setSortedEvents] = useState([])
 
     useEffect(() => {
         getEvents()
     }, [])
+
+    useEffect(() => {
+        const theSortedEvents = events.slice().sort((a, b) => {
+            const aDate = new Date(a.date)
+            const bDate = new Date(b.date)
+            a.date = aDate
+            b.date = bDate
+            return a.date - b.date
+        })
+        setSortedEvents(theSortedEvents)
+    }, [events])
 
     const handleClickAddEvent = () => {
         history.push("/events/create")
