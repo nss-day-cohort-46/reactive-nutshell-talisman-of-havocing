@@ -1,3 +1,4 @@
+import './Event.css'
 
 export const EventCard = ({ eventObj }) => {
     const eventDate = new Date(eventObj.date).toLocaleDateString('en-US', { timeZone: "CST" })
@@ -5,8 +6,9 @@ export const EventCard = ({ eventObj }) => {
     return (
         <>
             <section>
-                <h4>{eventObj.name}</h4>
-                <p>When: {eventDate} - {eventTime} @ {eventObj.location}</p>
+                <h4 className="eventCardH4">{eventObj.name}</h4>
+                <p className="eventCardP">{eventDate}</p>
+                <p className="eventCardP">{eventTime} @ {eventObj.location}</p>
             </section>
         </>
     )
