@@ -14,3 +14,13 @@
     margin-bottom: 2px;
     color: rgb(0, 86, 180);
 }
+
+.eventListHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.newEventButton {
+    margin-top: 2px;
+    margin-right: 2px;
+}
