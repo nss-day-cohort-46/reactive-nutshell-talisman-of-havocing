@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react"
 import { MessageCard } from "../messages/MessageCard"
 import { MessageContext } from "../messages/MessageProvider.js"
+import { MessagePost } from "./MessagePost"
 
 
 export const MessageList = () => {
@@ -16,13 +17,17 @@ export const MessageList = () => {
   
 
   return (
-    <div className="messages">
+      <>
+      <div id="newpost"><MessagePost /></div>
+      <div className="messages">
       {console.log("MessageList: Render", messages)}
       {
         messages.map(messageObject => {
           return <MessageCard key={messageObject.id} messageInstance={messageObject} />
         })
       }
+    
     </div>
+    </>
   )
 }

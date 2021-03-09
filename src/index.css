@@ -1,3 +1,5 @@
+@import './components/messages/Messages.css';
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +12,20 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.message {
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.button {
+  border-radius: 5px;
+  margin: 5px;
+}
+
+#newpost {
+  margin: 10px;
 }
