@@ -1,31 +1,15 @@
 // import React from "react"
 import { Route } from "react-router-dom"
-import { TaskContext } from './tasks/TaskProvider'
-import React, { useContext, useEffect } from "react"
+import React from "react"
 import { MessageList } from "./messages/MessageList"
 import { MessageProvider } from "./messages/MessageProvider"
-import { EventContext } from "./events/EventProvider"
-
 
 export const ApplicationViews = () => {
-  const { events, getEvents } = useContext(EventContext)
-  const { tasks, getTasks } = useContext(TaskContext)
-
-  useEffect(() => {
-    getEvents()
-    .then(getTasks)
-  }, [])
-
   return (
     <>
 
       <Route exact path="/">
-       
-        {/* Render the component for news articles */}
-        {events ? console.log("events", events) : console.log("no data")}
-        {tasks ? console.log("tasks", tasks) : console.log("no data")}
-
-         
+        {/* Render the component for list of friends */}
       </Route>
       <Route path="/friends">
         {/* Render the component for list of friends */}
