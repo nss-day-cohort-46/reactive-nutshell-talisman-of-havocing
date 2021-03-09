@@ -5,7 +5,7 @@ import { EventContext } from "./EventProvider";
 
 export const EventForm = () => {
     const { updateEvent, addEvent, getEventById } = useContext(EventContext)
-    const currentUserId = 0
+    const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 
     const [anEvent, setEvent] = useState({
         userId: currentUserId,
@@ -17,7 +17,6 @@ export const EventForm = () => {
     const [isLoading, setIsLoading] = useState(true)
     const { eventId } = useParams()
     const history = useHistory()
-
 
     const handleControlledInputChange = (event) => {
         const newEvent = { ...anEvent }
