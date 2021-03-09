@@ -3,11 +3,13 @@ import { EventCard } from "./EventCard"
 import { useContext, useEffect, useState } from "react"
 import './Event.css'
 import { useHistory } from "react-router-dom"
+import { EventForm } from "./EventForm"
 
 export const EventList = () => {
     const { events, getEvents } = useContext(EventContext)
     const history = useHistory()
     const [sortedEvents, setSortedEvents] = useState([])
+    const [openForm, setOpenForm] = useState(false)
 
     useEffect(() => {
         getEvents()
@@ -25,7 +27,7 @@ export const EventList = () => {
     }, [events])
 
     const handleClickAddEvent = () => {
-        history.push("/events/create")
+        setOpenForm(true)
     }
 
     return (
@@ -37,6 +39,7 @@ export const EventList = () => {
             {sortedEvents.map(eventObj => {
                 return <EventCard key={eventObj.id} eventObj={eventObj} />
             })}
+            {openForm && <EventForm  setOpenForm={setOpenForm}/>}
         </section>
     )
 }

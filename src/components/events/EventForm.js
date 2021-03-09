@@ -3,7 +3,7 @@ import "./Event.css"
 import { useHistory, useParams } from 'react-router-dom';
 import { EventContext } from "./EventProvider";
 
-export const EventForm = () => {
+export const EventForm = ({ setOpenForm }) => {
     const { updateEvent, addEvent, getEventById } = useContext(EventContext)
     const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 
@@ -36,16 +36,16 @@ export const EventForm = () => {
                 date: anEvent.date,
                 location: anEvent.location,
             })
-                .then(() => history.push(`/events`))
+                .then(() => setOpenForm(false))
         } else {
             addEvent(anEvent)
-                .then(() => history.push("/events"))
+                .then(() => setOpenForm(false))
         }
     }
 
     const handleCancel = (event) => {
         event.preventDefault()
-        history.goBack()
+        setOpenForm(false)
     }
 
     useEffect(() => {
