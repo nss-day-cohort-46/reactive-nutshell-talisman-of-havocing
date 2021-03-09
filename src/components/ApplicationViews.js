@@ -1,5 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import { ArticleProvider } from "./article/ArticleProvider";
+import { ArticleList } from "./article/ArticleList";
 
 export const ApplicationViews = () => {
   return (
@@ -8,6 +10,17 @@ export const ApplicationViews = () => {
       <Route exact path="/">
         {/* Render the component for news articles */}
       </Route>
+      <ArticleProvider>
+        <Route exact path="/articles">
+            <ArticleList />
+        </Route>
+        {/* <Route path="/articles/create">
+            <ArticleForm />
+        </Route> */}
+        {/* <Route path="/articles/detail/:articleId(\d+)">
+            <ArticleDetail/>
+        </Route> */}
+      </ArticleProvider>
       <Route path="/friends">
         {/* Render the component for list of friends */}
       </Route>
