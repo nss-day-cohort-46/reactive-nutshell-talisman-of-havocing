@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react"
 import { Article } from "./Article"
-import "./Article.css"
+// import "./Article.css"
 import { ArticleContext } from "./ArticleProvider"
 import { useHistory } from "react-router-dom";
 
@@ -19,7 +19,7 @@ export const ArticleList = () => {
     useEffect(() => {
         if (searchTerms !== "") {
             // If the search field is not blank, display matching articles
-            const subset = articles.filter(article => article.name.toLowerCase().includes(searchTerms))
+            const subset = articles.filter(article => article.title.toLowerCase().includes(searchTerms))
             setFiltered(subset)
         } else {
             // If the search field is blank, display all articles

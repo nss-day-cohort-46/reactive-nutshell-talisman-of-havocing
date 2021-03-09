@@ -11,7 +11,7 @@ export const ApplicationViews = () => {
         {/* Render the component for news articles */}
       </Route>
       <ArticleProvider>
-        <Route exact path="/articles">
+        <Route path="/articles">
             <ArticleList />
         </Route>
         {/* <Route path="/articles/create">
