@@ -11,7 +11,7 @@ export const EventList = () => {
         const bDate = new Date(b.date)
         a.date = aDate
         b.date = bDate
-        return b.date - a.date
+        return a.date - b.date
     })
 
     useEffect(() => {
