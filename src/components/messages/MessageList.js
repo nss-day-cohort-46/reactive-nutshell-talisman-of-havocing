@@ -21,13 +21,13 @@ export const MessageList = () => {
       <div id="newpost"><MessagePost /></div>
       <div className="messages">
       {console.log("MessageList: Render", messages)}
-      {
-        messages.map(messageObject => {
-          return <MessageCard key={messageObject.id} messageInstance={messageObject} />
-        })
-      }
     
     </div>
     </>
   )
 }
+    // {
+    //   messages.map(messageObject => {
+    //     return <MessageCard key={messageObject.id} messageInstance={messageObject} />
+    //   })
+    // }

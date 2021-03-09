@@ -1,47 +1,48 @@
+
 import React, { useContext, useState } from "react"
 import { useHistory, useParams } from "react-router-dom";
 import { MessageContext } from "./MessageProvider";
 
 
 
-export const MessagePost = () => {
-    const { newMessage } = useContext(MessageContext)
+export const MessageEdit = (id) => {
+    const { editMessage, getMessageById } = useContext(MessageContext)
 
-
+    const thisMessage = getMessageById(id)
     const [message, setMessage] = useState({
-      date: new Date,
-      postText: "",
-      userId: sessionStorage.getItem("nutshell_user")
-      
+        date: new Date,
+        postText: "",
+        userId: sessionStorage.getItem("nutshell_user")
+        
     });
-
+    
+    console.log("this message", message)
     const history = useHistory();
 
 
     const handleControlledInputChange = (event) => {
       
-      const newMessage = { ...message }
+      const editMessage = { ...message }
       let selectedVal = event.target.value
     
       
       /* Message is an object with properties.
       Set the property to the new value
       using object bracket notation. */
-      newMessage[event.target.id] = selectedVal
+      editMessage[event.target.id] = selectedVal
       // update state
-      setMessage(newMessage)
+      setMessage(editMessage)
     }
 
     const handleSaveMessage = () => {
         //disable the button - no extra clicks
         debugger
           //POST - add
-        newMessage({
+        editMessage({
             id: message.id,
             date: new Date,
             text: message.postText,
             userId: sessionStorage.getItem("nutshell_user")
-            
         })
             .then(() => history.push("/messages"))
     }

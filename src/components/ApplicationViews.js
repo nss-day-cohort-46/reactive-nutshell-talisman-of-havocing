@@ -5,6 +5,8 @@ import React, { useContext, useEffect } from "react"
 import { MessageList } from "./messages/MessageList"
 import { MessageProvider } from "./messages/MessageProvider"
 import { EventContext } from "./events/EventProvider"
+import { UserProvider } from "./users/UserProvider"
+import { MessageEdit } from "./messages/MessageEdit"
 
 
 export const ApplicationViews = () => {
@@ -31,10 +33,15 @@ export const ApplicationViews = () => {
         {/* Render the component for list of friends */}
       </Route>
       <MessageProvider>
-        <Route path="/messages">
-          <MessageList />
-          {/* Render the component for the messages */}
-        </Route>
+        <UserProvider>
+          <Route exact path="/messages">
+              <MessageList />
+              {/* Render the component for the messages */}
+          </Route>
+          <Route path="/messages/edit/:animalId(\d+)">
+              <MessageEdit />
+          </Route>
+        </UserProvider>
       </MessageProvider>
       <Route path="/tasks">
         {/* Render the component for the user's tasks */}
