@@ -5,7 +5,7 @@ import './NavBar.css'
 
 export const NavBar = (props) => {
   return (
-    <nav className="navbar navbar-custom  text-white flex-md-nowrap p-0 shadow">
+    <nav className="navbar-custom, text-white flex-md-nowrap p-0 shadow" >
 
       <ul className="nav ">
         <li className="nav-item">

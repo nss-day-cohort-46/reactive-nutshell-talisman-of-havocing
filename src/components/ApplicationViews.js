@@ -1,20 +1,15 @@
 // import React from "react"
 import { Route } from "react-router-dom"
-import { TaskContext } from './tasks/TaskProvider'
 import React, { useContext, useEffect } from "react"
 import { MessageList } from "./messages/MessageList"
 import { MessageProvider } from "./messages/MessageProvider"
-import { EventContext } from "./events/EventProvider"
+import { EventProvider } from "./events/EventProvider"
+import { TaskProvider } from './tasks/TaskProvider'
+import { TaskList } from './tasks/TaskList'
 
 
 export const ApplicationViews = () => {
-  const { events, getEvents } = useContext(EventContext)
-  const { tasks, getTasks } = useContext(TaskContext)
-
-  useEffect(() => {
-    getEvents()
-    .then(getTasks)
-  }, [])
+  
 
   return (
     <>
@@ -22,8 +17,7 @@ export const ApplicationViews = () => {
       <Route exact path="/">
        
         {/* Render the component for news articles */}
-        {events ? console.log("events", events) : console.log("no data")}
-        {tasks ? console.log("tasks", tasks) : console.log("no data")}
+        
 
          
       </Route>
@@ -36,9 +30,12 @@ export const ApplicationViews = () => {
           {/* Render the component for the messages */}
         </Route>
       </MessageProvider>
+      <TaskProvider>
       <Route path="/tasks">
+        <TaskList />
         {/* Render the component for the user's tasks */}
       </Route>
+      </TaskProvider>
       <Route path="/events">
         {/* Render the component for the user's events */}
       </Route>
