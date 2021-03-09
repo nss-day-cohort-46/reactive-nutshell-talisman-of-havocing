@@ -5,7 +5,6 @@ import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import "./Nutshell.css"
-import { EventProvider } from "./events/EventProvider"
 
 export const Nutshell = () => (
   <>
@@ -15,9 +14,7 @@ export const Nutshell = () => (
           return (
             <>
               <NavBar />
-              <EventProvider>
-                <ApplicationViews />
-              </EventProvider>
+              <ApplicationViews />
             </>
           )
         } else {

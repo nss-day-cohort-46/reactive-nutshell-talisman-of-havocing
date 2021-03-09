@@ -1,20 +1,13 @@
-import React, { useContext, useEffect } from "react"
+import React from "react"
 import { Route } from "react-router-dom"
-import { EventCard } from "./events/EventCard"
+import { EventList } from "./events/EventList"
+import { EventProvider } from "./events/EventProvider"
 
 export const ApplicationViews = () => {
-  const eventObj = {
-    id: 1,
-    userId: 1,
-    name: "event name",
-    date: "2021-03-15T09:00",
-    location: "Palm Springs"
-  }
   return (
     <>
-
       <Route exact path="/">
-        <EventCard  eventObj={eventObj}/>
+        {/* Render the component for list of friends */}
       </Route>
       <Route path="/friends">
         {/* Render the component for list of friends */}
@@ -26,7 +19,9 @@ export const ApplicationViews = () => {
         {/* Render the component for the user's tasks */}
       </Route>
       <Route path="/events">
-        {/* Render the component for the user's events */}
+        <EventProvider>
+          <EventList />
+        </EventProvider>
       </Route>
     </>
   )
