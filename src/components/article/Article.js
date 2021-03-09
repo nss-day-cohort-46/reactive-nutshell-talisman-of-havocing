@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom"
+import "./Article.css"
 
 
 export const Article = ({article}) => {
@@ -10,7 +11,6 @@ export const Article = ({article}) => {
             { article.title }
         </Link>
         </h3>
-
     </section>
 )
 }
