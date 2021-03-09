@@ -22,7 +22,7 @@
     align-items: baseline;
 }
 #taskComplete{
-    width: 1.6em;
+    width: 1.4em;
     margin-left: .3em;
     /* flex-direction: column; */
 }
