@@ -35,7 +35,7 @@ export const ArticleDetail = () => {
         {/* ? is testing/trying to see if the location or customer property exist */}
         <div className="article__timestamp">Timestamp: {article.timestamp}</div>
         <button onClick={handleRelease}>Delete Article</button>
-        {/* <button onClick={() => { history.push(`/articles/edit/${article.id}`) }}>Edit</button> */}
+        <button onClick={() => { history.push(`/articles/edit/${article.id}`) }}>Edit</button>
         </section>
     )
 }

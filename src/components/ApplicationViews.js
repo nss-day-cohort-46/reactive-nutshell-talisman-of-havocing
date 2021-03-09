@@ -3,6 +3,7 @@ import { Route } from "react-router-dom"
 import { ArticleProvider } from "./article/ArticleProvider";
 import { ArticleList } from "./article/ArticleList";
 import { ArticleDetail } from "./article/ArticleDetail";
+import { ArticleForm } from "./article/ArticleForm";
 
 export const ApplicationViews = () => {
   return (
@@ -10,11 +11,21 @@ export const ApplicationViews = () => {
       <ArticleProvider>
       <Route exact path="/">
         {/* Render the component for news articles */}
+        {/* <ArticleList /> */}
+      </Route>
+      <Route exact path="/articles">
+        {/* Render the component for news articles */}
         <ArticleList />
+      </Route>
+      <Route path="/articles/create">
+        <ArticleForm />
       </Route>
       <Route path="/articles/detail/:articleId(\d+)">
         <ArticleDetail />
-      </Route> 
+      </Route>
+      <Route path="/articles/edit/:articleId(\d+)">
+        <ArticleForm />
+      </Route>   
       </ArticleProvider> 
 
       <Route path="/friends">

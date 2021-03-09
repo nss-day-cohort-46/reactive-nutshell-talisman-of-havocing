@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react"
 import { Article } from "./Article"
-// import "./Article.css"
+import "./Article.css"
 import { ArticleContext } from "./ArticleProvider"
 import { useHistory } from "react-router-dom";
 
