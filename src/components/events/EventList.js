@@ -7,7 +7,6 @@ import { EventForm } from "./EventForm"
 
 export const EventList = () => {
     const { events, getEvents } = useContext(EventContext)
-    const history = useHistory()
     const [sortedEvents, setSortedEvents] = useState([])
     const [openForm, setOpenForm] = useState(false)
 
