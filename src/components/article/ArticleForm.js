@@ -121,7 +121,7 @@ useEffect(() => {
             </fieldset>
             <fieldset>
                 <div className="article__timeStamp">
-                    <label htmlFor="timestamp">Timestamp:{article.timestamp}</label>
+                    <label htmlFor="timestamp">Timestamp:</label>
                     <input type="timestamp" id="timestamp" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Timestamp" value={article.timestamp}/>
                 </div>
             </fieldset>
