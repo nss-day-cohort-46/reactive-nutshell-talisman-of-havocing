@@ -34,7 +34,7 @@ export const MessagePost = () => {
 
     const handleSaveMessage = () => {
         //disable the button - no extra clicks
-        debugger
+        
           //POST - add
         newMessage({
             id: message.id,

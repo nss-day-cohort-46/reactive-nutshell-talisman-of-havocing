@@ -10,7 +10,6 @@ export const MessageList = () => {
   
   //useEffect - reach out to the world for something
   useEffect(() => {
-    console.log("MessageList: useEffect - getMessages")
     getMessages()
 
   }, [])
@@ -20,14 +19,14 @@ export const MessageList = () => {
       <>
       <div id="newpost"><MessagePost /></div>
       <div className="messages">
+        {
+        messages.map(messageObject => {
+            return <MessageCard key={messageObject.id} messageInstance={messageObject} />
+        })
+        }
       {console.log("MessageList: Render", messages)}
     
     </div>
     </>
   )
 }
-    // {
-    //   messages.map(messageObject => {
-    //     return <MessageCard key={messageObject.id} messageInstance={messageObject} />
-    //   })
-    // }

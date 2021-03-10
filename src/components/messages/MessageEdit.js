@@ -7,11 +7,18 @@ import { MessageContext } from "./MessageProvider";
 
 export const MessageEdit = (id) => {
     const { editMessage, getMessageById } = useContext(MessageContext)
+    
+    const {messageId} = useParams()
+    
+    let thisMessage = {}
 
-    const thisMessage = getMessageById(id)
+    debugger
+    getMessageById(messageId)
+    .then(res => thisMessage = res)
+
     const [message, setMessage] = useState({
-        date: new Date,
-        postText: "",
+        date: thisMessage.date,
+        postText: thisMessage.text,
         userId: sessionStorage.getItem("nutshell_user")
         
     });
@@ -19,7 +26,7 @@ export const MessageEdit = (id) => {
     console.log("this message", message)
     const history = useHistory();
 
-
+    
     const handleControlledInputChange = (event) => {
       
       const editMessage = { ...message }
@@ -35,29 +42,31 @@ export const MessageEdit = (id) => {
     }
 
     const handleSaveMessage = () => {
+        
         //disable the button - no extra clicks
-        debugger
           //POST - add
         editMessage({
-            id: message.id,
-            date: new Date,
+            id: thisMessage.id,
+            date: thisMessage.date,
             text: message.postText,
             userId: sessionStorage.getItem("nutshell_user")
         })
             .then(() => history.push("/messages"))
+        
     }
       
     
-
+    console.log("thisMessage.text", thisMessage)
     return (
       <form className="messageForm">
-        <h2 className="messageForm__title">New Post</h2>
+        <h2 className="messageForm__title">Edit Post</h2>
         <fieldset>
           <div className="form-group">
-            <input type="text" id="postText" required autoFocus className="form-control"
-            placeholder="New Post..."
+            <textarea id="postText"  autoFocus className="form-control"
             onChange={handleControlledInputChange}
-            value={message.text}/>
+            value={message.text}
+            >{thisMessage.postText}</textarea>
+            
           </div>
         </fieldset>
         
@@ -67,7 +76,7 @@ export const MessageEdit = (id) => {
             event.preventDefault()
             handleSaveMessage()
           }}>
-        Save</button>
+        Save Edit</button>
       </form>
     )
 }

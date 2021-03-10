@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { MessageContext } from "./MessageProvider"
-import { useParams, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { UserContext } from "../users/UserProvider"
 
 //HTML to display individual messages
@@ -10,7 +10,7 @@ export const MessageCard = ({ messageInstance }) => {
     
     const [message, setMessage] = useState({})
     
-    const {messageId} = useParams()
+    
     
     const history = useHistory()
 
@@ -23,12 +23,6 @@ export const MessageCard = ({ messageInstance }) => {
         })
     }
 
-    const messageEdit = (id) => {
-        editMessage(messageInstance)
-        .then(() => {
-            history.push("/messages")
-        })
-    }
     
     useEffect(() => {
         console.log("useEffect###:", users)
@@ -46,7 +40,8 @@ export const MessageCard = ({ messageInstance }) => {
         }, [])
         
         
-    let user = users.find(user => user.id === messageInstance.userId)
+    
+    let user = users.find(user => user.id === parseInt(messageInstance.userId))
         
         
     return (
@@ -55,9 +50,9 @@ export const MessageCard = ({ messageInstance }) => {
         <div className="messageText">{ messageInstance.text }</div>
         { console.log("users", users)}
         { console.log("user", user)}
-        <div>--{ users.name }</div>
+        {/* <div>--{user.name}</div> */}
         <button onClick={messageDelete} className="button">Delete</button>
-        <button onClick={messageEdit(messageInstance.id)}>Edit</button>
+        <button onClick={() => history.push(`/message/edit/${messageInstance.id}`)}>Edit</button>
     </section>
     )
 
