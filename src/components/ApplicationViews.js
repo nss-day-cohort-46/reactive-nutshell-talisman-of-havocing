@@ -3,14 +3,10 @@ import { Route } from "react-router-dom"
 import { ArticleProvider } from "./article/ArticleProvider";
 import { ArticleList } from "./article/ArticleList";
 import { ArticleDetail } from "./article/ArticleDetail";
-import React, { useContext, useEffect } from "react"
 import { MessageList } from "./messages/MessageList"
 import { MessageProvider } from "./messages/MessageProvider"
 import { EventList } from "./events/EventList"
 import { EventProvider } from "./events/EventProvider"
-import { MessageList } from "./messages/MessageList"
-import { MessageContext, MessageProvider } from "./messages/MessageProvider"
-import { EventContext } from "./events/EventProvider"
 import { UserProvider } from "./users/UserProvider"
 import { MessageEdit } from "./messages/MessageEdit"
 import { TaskProvider } from './tasks/TaskProvider'
