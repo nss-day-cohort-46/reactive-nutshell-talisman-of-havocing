@@ -9,6 +9,7 @@ export const EventList = () => {
     const { events, getEvents } = useContext(EventContext)
     const [sortedEvents, setSortedEvents] = useState([])
     const [openForm, setOpenForm] = useState(false)
+    let eventCounter = 0
 
     useEffect(() => {
         getEvents()
@@ -36,7 +37,8 @@ export const EventList = () => {
                 <button className="btn btn-primary newEventButton" onClick={handleClickAddEvent}>+ Event</button>
             </div>
             {sortedEvents.map(eventObj => {
-                return <EventCard key={eventObj.id} eventObj={eventObj} />
+                eventCounter++
+                return <EventCard key={eventObj.id} eventObj={eventObj} eventCounter={eventCounter} />
             })}
             {openForm && <EventForm  setOpenForm={setOpenForm}/>}
         </section>

@@ -60,3 +60,9 @@
     font-size: 15px;
     text-decoration: wavy;
 }
+
+p {
+    font-weight: bold;
+    font-size: xx-large;
+    background-color: rgb(129, 190, 129);
+}
