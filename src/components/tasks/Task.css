@@ -29,3 +29,12 @@
 .tasks h3{
     text-align: center;
 }
+
+.taskForm{
+    border: 1px solid black;
+    margin: 5em;
+    padding: .3em;
+    /* display: flex; */
+    width: 50%;
+
+}

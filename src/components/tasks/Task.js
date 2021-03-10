@@ -15,6 +15,7 @@ export const Task = ({ task }) =>{
           
           if(event.target.checked === true){
               task.isComplete = true
+              event.target.style.display = "none"
           }else {
               task.isComplete = false
           }
