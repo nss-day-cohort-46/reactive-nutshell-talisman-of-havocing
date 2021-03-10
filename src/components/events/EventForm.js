@@ -3,7 +3,7 @@ import "./Event.css"
 import { useHistory, useParams } from 'react-router-dom';
 import { EventContext } from "./EventProvider";
 
-export const EventForm = ({ setOpenForm }) => {
+export const EventForm = ({ setOpenForm,  eventId }) => {
     const { updateEvent, addEvent, getEventById } = useContext(EventContext)
     const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 
@@ -15,8 +15,6 @@ export const EventForm = ({ setOpenForm }) => {
     });
 
     const [isLoading, setIsLoading] = useState(true)
-    const { eventId } = useParams()
-    const history = useHistory()
 
     const handleControlledInputChange = (event) => {
         const newEvent = { ...anEvent }
