@@ -1,10 +1,16 @@
 // import React from "react"
 import { Route } from "react-router-dom"
-import React from "react"
+import React, { useContext, useEffect } from "react"
 import { MessageList } from "./messages/MessageList"
 import { MessageProvider } from "./messages/MessageProvider"
+import { EventProvider } from "./events/EventProvider"
+import { TaskProvider } from './tasks/TaskProvider'
+import { TaskList } from './tasks/TaskList'
+
 
 export const ApplicationViews = () => {
+  
+
   return (
     <>
 
@@ -20,9 +26,12 @@ export const ApplicationViews = () => {
           {/* Render the component for the messages */}
         </Route>
       </MessageProvider>
+      <TaskProvider>
       <Route path="/tasks">
+        <TaskList />
         {/* Render the component for the user's tasks */}
       </Route>
+      </TaskProvider>
       <Route path="/events">
         {/* Render the component for the user's events */}
       </Route>
