@@ -50,7 +50,8 @@ export const MessageEdit = (id) => {
       setMessage(editMessage)
     }
 
-    const handleSaveMessage = () => {
+    const handleSaveMessage = (event) => {
+        event.preventDefault()
         editMessage({
             id: thisMessage.id,
             date: thisMessage.date,
@@ -68,8 +69,9 @@ export const MessageEdit = (id) => {
         <h2 className="messageForm__title">Edit Post</h2>
         <fieldset>
           <div className="form-group">
-            <textarea id="postText"  autoFocus className="form-control"
+            <textarea id="text"  autoFocus className="form-control"
             onChange={handleControlledInputChange}
+            name="text"
             value={message.text}
             >{message.text}</textarea>
             
@@ -79,8 +81,7 @@ export const MessageEdit = (id) => {
         <button className="btn btn-primary"
           
           onClick={event => {
-            event.preventDefault()
-            handleSaveMessage()
+            handleSaveMessage(event)
           }}>
         Save Edit</button>
       </form>
