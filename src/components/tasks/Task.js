@@ -12,10 +12,10 @@ export const Task = ({ task }) =>{
     //   const [taskComplete, setTaskComplete] = useState()
       // User can select if task is complete. Will change isComplete in db
       const handleControlledInputChange = (event) => {
-          
+          let completedTask = document.querySelector(".task")
           if(event.target.checked === true){
               task.isComplete = true
-              event.target.style.display = "none"
+              completedTask.style.display = "none"
           }else {
               task.isComplete = false
           }
