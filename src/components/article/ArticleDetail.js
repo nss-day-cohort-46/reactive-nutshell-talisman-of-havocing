@@ -28,14 +28,14 @@ export const ArticleDetail = () => {
 
     return (
         <section className="article">
-        <h3 className="article__title">{article.title}</h3>
+        <h2 className="article__title">{article.title}</h2>
         <div className="article__synopsis">Synopsis: {article.synopsis}</div>
-        <div className="article__url">{article.url}</div>
+        <a className="article__url" href={ article.url }>{ article.url }</a>
         {/* What's up with the question mark???? See below.*/}
         {/* ? is testing/trying to see if the location or customer property exist */}
         <div className="article__timestamp">Timestamp: {article.timestamp}</div>
         <button onClick={handleRelease}>Delete Article</button>
-        {/* <button onClick={() => { history.push(`/articles/edit/${article.id}`) }}>Edit</button> */}
+        <button onClick={() => { history.push(`/articles/edit/${article.id}`) }}>Edit</button>
         </section>
     )
 }

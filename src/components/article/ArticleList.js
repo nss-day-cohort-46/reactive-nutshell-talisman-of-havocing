@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react"
 import { Article } from "./Article"
-// import "./Article.css"
+import "./Article.css"
 import { ArticleContext } from "./ArticleProvider"
 import { useHistory } from "react-router-dom";
 
@@ -31,7 +31,7 @@ export const ArticleList = () => {
     <>
     <section>
         <h2>Articles</h2>
-        <button onClick={() => { history.push("/articles/create") }}>Add Article</button>
+        <button onClick={() => { history.push("/articles/create") }}>New Article</button>
 
         <div className="articles">
         {

@@ -6,11 +6,11 @@ import "./Article.css"
 export const Article = ({article}) => {
     return (
     <section className="article">
-        <h3 className="article__title">
+        <h4 className="article__title">
         <Link to={`/articles/detail/${article.id}`}>
             { article.title }
         </Link>
-        </h3>
+        </h4>
     </section>
 )
 }
