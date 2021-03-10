@@ -2,7 +2,6 @@ import { EventContext } from "./EventProvider"
 import { EventCard } from "./EventCard"
 import { useContext, useEffect, useState } from "react"
 import './Event.css'
-import { useHistory } from "react-router-dom"
 import { EventForm } from "./EventForm"
 
 export const EventList = () => {

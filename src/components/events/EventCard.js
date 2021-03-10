@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import './Event.css'
 import { EventForm } from './EventForm'
+import { EventContext } from "./EventProvider"
 
 export const EventCard = ({ eventObj, eventCounter }) => {
     const theDate = new Date(eventObj.date)
@@ -10,6 +11,7 @@ export const EventCard = ({ eventObj, eventCounter }) => {
     const eventDay = dayOfTheWeek[theDate.getDay()]
     const [openForm, setOpenForm] = useState(false)
     const loggedInUserId = parseInt(sessionStorage.getItem("nutshell_user"))
+    const { deleteEvent } = useContext(EventContext)
     let headerInputStyle = {}
     let paragraphInputStyle = {}
     let sectionInputStyle = {
@@ -49,7 +51,7 @@ export const EventCard = ({ eventObj, eventCounter }) => {
         setOpenForm(true)
     }
     const handleClickDeleteEvent = () => {
-        setOpenForm(true)
+        deleteEvent(eventObj.id)
     }
 
     return (
