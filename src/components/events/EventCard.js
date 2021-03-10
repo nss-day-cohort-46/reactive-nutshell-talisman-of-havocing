@@ -12,7 +12,10 @@ export const EventCard = ({ eventObj, eventCounter }) => {
     const loggedInUserId = parseInt(sessionStorage.getItem("nutshell_user"))
     let headerInputStyle = {}
     let paragraphInputStyle = {}
-    let sectionInputStyle = {}
+    let sectionInputStyle = {
+        marginLeft: '20px',
+        marginRight: '20px',
+    }
     let buttonInputStyle = {}
     let editButton = false
     if (eventCounter === 1) {
@@ -30,6 +33,8 @@ export const EventCard = ({ eventObj, eventCounter }) => {
             borderRadius: '20px',
             padding: '10px',
             marginTop: '10px',
+            marginLeft: '20px',
+            marginRight: '20px',
         }
         buttonInputStyle = {
             backgroundColor: 'rgb(129, 190, 129)',
