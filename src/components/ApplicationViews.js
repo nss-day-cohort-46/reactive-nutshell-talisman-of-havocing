@@ -9,6 +9,7 @@ import { UserProvider } from "./users/UserProvider"
 import { MessageEdit } from "./messages/MessageEdit"
 import { TaskProvider } from './tasks/TaskProvider'
 import { TaskList } from './tasks/TaskList'
+import { FriendProvider } from "./friends/FriendProvider"
 
 
 
@@ -24,17 +25,17 @@ export const ApplicationViews = () => {
         {/* Render the component for list of friends */}
       </Route>
       <MessageProvider>
-
-        <UserProvider>
-          <Route exact path="/messages">
-              <MessageList />
-              {/* Render the component for the messages */}
-          </Route>
-          <Route path="/message/edit/:messageId(\d+)">
-              <MessageEdit />
-          </Route>
-        </UserProvider>
-
+        <FriendProvider>
+          <UserProvider>
+            <Route exact path="/messages">
+                <MessageList />
+                {/* Render the component for the messages */}
+            </Route>
+            <Route path="/message/edit/:messageId(\d+)">
+                <MessageEdit />
+            </Route>
+          </UserProvider>
+        </FriendProvider>
       </MessageProvider>
       <TaskProvider>
         <Route path="/tasks">
