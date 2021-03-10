@@ -22,17 +22,10 @@ export const MessageCard = ({ messageInstance }) => {
             history.push("/messages")
         })
     }
-
     
     useEffect(() => {
-        console.log("useEffect###:", users)
         getUsers()
-    
-      }, [])
-
-    useEffect(() => {
-        console.log("useEffect!!!", messageInstance.id)
-        getMessageById(messageInstance.id)
+        .then(getMessageById(messageInstance.id))
         .then((response) => {
           setMessage(response)
         })
@@ -50,7 +43,7 @@ export const MessageCard = ({ messageInstance }) => {
         <div className="messageText">{ messageInstance.text }</div>
         { console.log("users", users)}
         { console.log("user", user)}
-        {/* <div>--{user.name}</div> */}
+        <div>--{user ? user.name : "no user"}</div>
         <button onClick={messageDelete} className="button">Delete</button>
         <button onClick={() => history.push(`/message/edit/${messageInstance.id}`)}>Edit</button>
     </section>

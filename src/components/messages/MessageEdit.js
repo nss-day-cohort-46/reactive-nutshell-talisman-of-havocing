@@ -1,54 +1,60 @@
 
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom";
 import { MessageContext } from "./MessageProvider";
 
 
 
+
 export const MessageEdit = (id) => {
     const { editMessage, getMessageById } = useContext(MessageContext)
-    
     const {messageId} = useParams()
+    const [isLoading, setIsLoading] = useState(true);
+    const history = useHistory();
     
     let thisMessage = {}
 
-    debugger
-    getMessageById(messageId)
+    
+    getMessageById(parseInt(messageId))
     .then(res => thisMessage = res)
 
     const [message, setMessage] = useState({
         date: thisMessage.date,
-        postText: thisMessage.text,
+        text: thisMessage.text,
         userId: sessionStorage.getItem("nutshell_user")
         
     });
     
+
+    useEffect(() => {
+        if (messageId) {
+            getMessageById(messageId)
+                .then(message => {
+                    setMessage(message)
+                    setIsLoading(false)
+                })
+        } else {
+            setIsLoading(false)
+        }
+    }, [])
+
     console.log("this message", message)
-    const history = useHistory();
 
     
     const handleControlledInputChange = (event) => {
       
       const editMessage = { ...message }
       let selectedVal = event.target.value
-    
-      
-      /* Message is an object with properties.
-      Set the property to the new value
-      using object bracket notation. */
       editMessage[event.target.id] = selectedVal
       // update state
       setMessage(editMessage)
     }
 
     const handleSaveMessage = () => {
-        
-        //disable the button - no extra clicks
-          //POST - add
         editMessage({
             id: thisMessage.id,
             date: thisMessage.date,
-            text: message.postText,
+            text: message.text,
             userId: sessionStorage.getItem("nutshell_user")
         })
             .then(() => history.push("/messages"))
@@ -65,7 +71,7 @@ export const MessageEdit = (id) => {
             <textarea id="postText"  autoFocus className="form-control"
             onChange={handleControlledInputChange}
             value={message.text}
-            >{thisMessage.postText}</textarea>
+            >{message.text}</textarea>
             
           </div>
         </fieldset>
