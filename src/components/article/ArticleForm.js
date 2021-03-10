@@ -16,7 +16,7 @@ export const ArticleForm = () => {
 
     const [article, setArticles] = useState({
         id: "",
-        userId: "",
+        userId: 0,
         title: "",
         synopsis: "",
         url: "",
@@ -42,15 +42,18 @@ export const ArticleForm = () => {
         /* When changing a state object or array,
         always create a copy, make changes, and then set state.*/
         const newArticle = { ...article }
+        // const articleDate = new Date()
         /* Animal is an object with properties.
         Set the property to the new value
         using object bracket notation. */
         newArticle[event.target.id] = event.target.value
+        // newArticle.timestamp = `${articleDate.toLocaleDateString('en-US')}`
         // update state
         setArticles(newArticle)
     }
 
-    const handleClickSaveArticle = (event) => {
+    const handleClickSaveArticle = () => {
+
         if (articleId){
             //PUT - update
             updateArticle({
@@ -94,33 +97,32 @@ useEffect(() => {
     }
     })
 }, [])
-        
 
         return (
         <form className="articleForm">
-            <h2 className="articleForm__title">{articleId ? "Edit Article" : "Add Article"}</h2>
+            <h2 className="articleForm__title">{articleId ? "Edit Article" : "Add New Article"}</h2>
             <fieldset>
-                <div className="form-group">
+                <div className="article__title">
                     <label htmlFor="title">Article Title:</label>
                     <input type="text" id="title" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Article Title" value={article.title}/>
                 </div>
             </fieldset>
             <fieldset>
-                <div className="form-group">
+                <div className="article__synopsis">
                     <label htmlFor="synopsis">Synopsis:</label>
                     <input type="text" id="synopsis" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Synopsis" value={article.synopsis}/>
                 </div>
             </fieldset>
             <fieldset>
-                <div className="form-group">
+                <div className="article__url">
                     <label htmlFor="url">Url:</label>
-                    <input type="text" id="url" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Url" value={article.url}/>
+                    <input type="url" id="url" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Url" value={article.url}/>
                 </div>
             </fieldset>
             <fieldset>
-                <div className="form-group">
-                    <label htmlFor="timestamp">Timestamp:</label>
-                    <input type="text" id="timestamp" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Timestamp" value={article.timestamp}/>
+                <div className="article__timeStamp">
+                    <label htmlFor="timestamp">Timestamp:{article.timestamp}</label>
+                    <input type="timestamp" id="timestamp" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Timestamp" value={article.timestamp}/>
                 </div>
             </fieldset>
             <button className="btn btn-primary"

@@ -31,7 +31,7 @@ export const ArticleList = () => {
     <>
     <section>
         <h2>Articles</h2>
-        <button onClick={() => { history.push("/articles/create") }}>Add Article</button>
+        <button onClick={() => { history.push("/articles/create") }}>New Article</button>
 
         <div className="articles">
         {

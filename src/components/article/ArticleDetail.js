@@ -28,7 +28,7 @@ export const ArticleDetail = () => {
 
     return (
         <section className="article">
-        <h3 className="article__title">{article.title}</h3>
+        <h2 className="article__title">{article.title}</h2>
         <div className="article__synopsis">Synopsis: {article.synopsis}</div>
         <div className="article__url">{article.url}</div>
         {/* What's up with the question mark???? See below.*/}
