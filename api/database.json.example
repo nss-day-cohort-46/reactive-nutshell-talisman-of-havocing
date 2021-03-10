@@ -130,7 +130,29 @@
       "id": 17
     }
   ],
-  "tasks": [],
+  "tasks": [
+    {
+      "id": 1,
+      "userId": 1,
+      "name": "Make a Sandwich",
+      "completionDate": "2021-02-15T09:00",
+      "isComplete": true
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "name": "Clean the garage",
+      "completionDate": "2021-03-15T09:00",
+      "isComplete": true
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "name": "Give dog a bath",
+      "completionDate": "2021-03-15T09:00",
+      "isComplete": true
+    }
+  ],
   "friends": [
     {
       "id": 1,

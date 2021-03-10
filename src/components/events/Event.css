@@ -48,3 +48,15 @@
     max-height: calc(100vh - 210px);
     overflow-y: auto;
 }
+
+.editEventButton {
+    border: none;
+    background-color: white;
+    color: blue;
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+    font-size: 15px;
+    text-decoration: wavy;
+}
