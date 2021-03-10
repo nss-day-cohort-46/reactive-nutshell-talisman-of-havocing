@@ -10,6 +10,12 @@ export const EventCard = ({ eventObj }) => {
     const eventDay = dayOfTheWeek[theDate.getDay()]
     const [openForm, setOpenForm] = useState(false)
 
+    const loggedInUserId = parseInt(sessionStorage.getItem("nutshell_user"))
+    let editButton = false
+    if (loggedInUserId === eventObj.userId) {
+        editButton = true
+    }
+
     const handleClickAddEvent = () => {
         setOpenForm(true)
     }
@@ -20,7 +26,7 @@ export const EventCard = ({ eventObj }) => {
                 <h4 className="eventCardH4">{eventObj.name}</h4>
                 <p className="eventCardP">{eventDay} - {eventDate}</p>
                 <p className="eventCardP">{eventTime} @ {eventObj.location}</p>
-                <button className="editEventButton" onClick={handleClickAddEvent}>edit</button>
+                {editButton ? <button className="editEventButton" onClick={handleClickAddEvent}>edit</button> : ""}
                 {openForm && <EventForm  setOpenForm={setOpenForm} eventId={eventObj.id}/>}
             </section>
         </>
