@@ -24,7 +24,7 @@ export const EventProvider = (props) => {
             .then(getEvents)
     }
 
-    const getEventsById = (id) => {
+    const getEventById = (id) => {
         return fetch(`http://localhost:8088/events/${id}`)
             .then(res => res.json())
     }
@@ -43,7 +43,7 @@ export const EventProvider = (props) => {
 
     return (
         <EventContext.Provider value={{
-            events, getEvents, addEvent, getEventsById, updateEvent
+            events, getEvents, addEvent, getEventById, updateEvent
         }}>
             {props.children}
         </EventContext.Provider>

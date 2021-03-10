@@ -3,9 +3,9 @@ import "./Event.css"
 import { useHistory, useParams } from 'react-router-dom';
 import { EventContext } from "./EventProvider";
 
-export const EventForm = () => {
+export const EventForm = ({ setOpenForm,  eventId }) => {
     const { updateEvent, addEvent, getEventById } = useContext(EventContext)
-    const currentUserId = 0
+    const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 
     const [anEvent, setEvent] = useState({
         userId: currentUserId,
@@ -15,9 +15,6 @@ export const EventForm = () => {
     });
 
     const [isLoading, setIsLoading] = useState(true)
-    const { eventId } = useParams()
-    const history = useHistory()
-
 
     const handleControlledInputChange = (event) => {
         const newEvent = { ...anEvent }
@@ -25,7 +22,7 @@ export const EventForm = () => {
         setEvent(newEvent)
     }
 
-    const handleClickSaveEmployee = (event) => {
+    const handleClicksSaveEvent = (event) => {
         event.preventDefault()
 
         setIsLoading(true)
@@ -37,16 +34,16 @@ export const EventForm = () => {
                 date: anEvent.date,
                 location: anEvent.location,
             })
-                .then(() => history.push(`/events/detail/${anEvent.id}`))
+                .then(() => setOpenForm(false))
         } else {
             addEvent(anEvent)
-                .then(() => history.push("/events"))
+                .then(() => setOpenForm(false))
         }
     }
 
     const handleCancel = (event) => {
         event.preventDefault()
-        history.goBack()
+        setOpenForm(false)
     }
 
     useEffect(() => {
@@ -62,28 +59,32 @@ export const EventForm = () => {
     }, [])
 
     return (
-        <form className="eventForm">
-            <h2 className="eventForm__title">{eventId ? "Edit Event" : "Add Event"}</h2>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="name">Event name:</label>
-                    <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="event name" value={anEvent.name} />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="role">Event Date:</label>
-                    <input type="datetime-local" id="date" onChange={handleControlledInputChange} required className="form-control" value={anEvent.date} />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="name">Event Location:</label>
-                    <input type="text" id="location" onChange={handleControlledInputChange} required className="form-control" placeholder="event location" value={anEvent.location} />
-                </div>
-            </fieldset>
-            <button disabled={isLoading} className="btn btn-primary" onClick={handleClickSaveEmployee}>{eventId ? "Submit Edit" : "Save New Event"}</button>
-            <button className="btn" onClick={handleCancel}>Cancel</button>
-        </form>
+        <div id="eventForm__modal" className="modal--parent">
+            <div className="modal--content">
+                <form className="eventForm">
+                    <h2 className="eventForm__title">{eventId ? "Edit Event" : "Add Event"}</h2>
+                    <fieldset>
+                        <div className="form-group">
+                            <label htmlFor="name">Event name:</label>
+                            <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="event name" value={anEvent.name} />
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <div className="form-group">
+                            <label htmlFor="role">Event Date:</label>
+                            <input type="datetime-local" id="date" onChange={handleControlledInputChange} required className="form-control" value={anEvent.date} />
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <div className="form-group">
+                            <label htmlFor="name">Event Location:</label>
+                            <input type="text" id="location" onChange={handleControlledInputChange} required className="form-control" placeholder="event location" value={anEvent.location} />
+                        </div>
+                    </fieldset>
+                    <button disabled={isLoading} className="btn btn-primary" onClick={handleClicksSaveEvent}>{eventId ? "Submit Edit" : "Save New Event"}</button>
+                    <button className="btn" onClick={handleCancel}>Cancel</button>
+                </form>
+            </div>
+        </div>
     )
 }

@@ -6,7 +6,6 @@ import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import "./Nutshell.css"
 
-
 export const Nutshell = () => (
   <>
     <Route
@@ -14,11 +13,8 @@ export const Nutshell = () => (
         if (sessionStorage.getItem("nutshell_user")) {
           return (
             <>
-            
-            <NavBar />
-            <ApplicationViews />
-            
-            
+              <NavBar />
+              <ApplicationViews />
             </>
           )
         } else {
