@@ -3,9 +3,13 @@ import { Route } from "react-router-dom"
 import { EventList } from "./events/EventList"
 import { EventProvider } from "./events/EventProvider"
 import { MessageList } from "./messages/MessageList"
-import { MessageProvider } from "./messages/MessageProvider"
+import { MessageContext, MessageProvider } from "./messages/MessageProvider"
+import { EventContext } from "./events/EventProvider"
+import { UserProvider } from "./users/UserProvider"
+import { MessageEdit } from "./messages/MessageEdit"
 import { TaskProvider } from './tasks/TaskProvider'
 import { TaskList } from './tasks/TaskList'
+
 
 
 export const ApplicationViews = () => {
@@ -20,9 +24,17 @@ export const ApplicationViews = () => {
         {/* Render the component for list of friends */}
       </Route>
       <MessageProvider>
-        <Route path="/messages">
-          <MessageList />
-        </Route>
+
+        <UserProvider>
+          <Route exact path="/messages">
+              <MessageList />
+              {/* Render the component for the messages */}
+          </Route>
+          <Route path="/message/edit/:messageId(\d+)">
+              <MessageEdit />
+          </Route>
+        </UserProvider>
+
       </MessageProvider>
       <TaskProvider>
         <Route path="/tasks">
