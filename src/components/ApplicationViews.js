@@ -1,40 +1,30 @@
-// import React from "react"
+import React from "react"
 import { Route } from "react-router-dom"
-import { TaskContext } from './tasks/TaskProvider'
-import React, { useContext, useEffect } from "react"
+import { EventList } from "./events/EventList"
+import { EventProvider } from "./events/EventProvider"
 import { MessageList } from "./messages/MessageList"
 import { MessageContext, MessageProvider } from "./messages/MessageProvider"
 import { EventContext } from "./events/EventProvider"
 import { UserProvider } from "./users/UserProvider"
 import { MessageEdit } from "./messages/MessageEdit"
-
+import { TaskProvider } from './tasks/TaskProvider'
+import { TaskList } from './tasks/TaskList'
 
 
 
 export const ApplicationViews = () => {
-  const { events, getEvents } = useContext(EventContext)
-  const { tasks, getTasks } = useContext(TaskContext)
 
-  useEffect(() => {
-    getEvents()
-    .then(getTasks)
-  }, [])
 
   return (
     <>
-
       <Route exact path="/">
-       
-        {/* Render the component for news articles */}
-        {events ? console.log("events", events) : console.log("no data")}
-        {tasks ? console.log("tasks", tasks) : console.log("no data")}
-
-         
+        {/* Render the component for list of friends */}
       </Route>
       <Route path="/friends">
         {/* Render the component for list of friends */}
       </Route>
       <MessageProvider>
+
         <UserProvider>
           <Route exact path="/messages">
               <MessageList />
@@ -44,12 +34,17 @@ export const ApplicationViews = () => {
               <MessageEdit />
           </Route>
         </UserProvider>
+
       </MessageProvider>
-      <Route path="/tasks">
-        {/* Render the component for the user's tasks */}
-      </Route>
-      <Route path="/events">
-        {/* Render the component for the user's events */}
+      <TaskProvider>
+        <Route path="/tasks">
+          <TaskList />
+        </Route>
+      </TaskProvider>
+      <Route exact path="/events">
+        <EventProvider>
+          <EventList />
+        </EventProvider>
       </Route>
     </>
   )
