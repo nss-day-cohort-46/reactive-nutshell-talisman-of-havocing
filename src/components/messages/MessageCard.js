@@ -11,6 +11,7 @@ export const MessageCard = ({ messageInstance }) => {
     const [message, setMessage] = useState({})
     
     
+    let user = users.find(user => user.id === parseInt(messageInstance.userId))
     
     const history = useHistory()
 
@@ -30,25 +31,45 @@ export const MessageCard = ({ messageInstance }) => {
           setMessage(response)
         })
         
-        }, [])
-        
-        
+    }, [])
     
-    let user = users.find(user => user.id === parseInt(messageInstance.userId))
+        
+    const currentUser = sessionStorage.getItem("nutshell_user")
+
+    
+
+    
+    const EditDelete = () => {
+        
+        if (parseInt(currentUser) === parseInt(messageInstance.userId)) {
+        
+            
+            return <>
+            <button onClick={messageDelete} className="button">Delete</button>
+            <button onClick={() => history.push(`/message/edit/${messageInstance.id}`)}>Edit</button>
+            </>
+            
+        } else {
+            return null
+        }
+    }
+        
         
         
     return (
-    <section className="message">
+            
+            
+        // const editDelete = () => {
+        <section className="message">
         <h6 className="messagetimeStamp">{ newDate }</h6>
         <div className="messageText">{ messageInstance.text }</div>
         { console.log("users", users)}
         { console.log("user", user)}
         <div>--{user ? user.name : "no user"}</div>
-        <button onClick={messageDelete} className="button">Delete</button>
-        <button onClick={() => history.push(`/message/edit/${messageInstance.id}`)}>Edit</button>
+        <EditDelete />
+
     </section>
     )
-
+    
 }
-
 
