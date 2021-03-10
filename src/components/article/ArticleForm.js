@@ -3,6 +3,13 @@ import { ArticleContext } from "../article/ArticleProvider"
 import "./Article.css"
 import { useParams, useHistory } from 'react-router-dom';
 
+const structureOfDate = {
+    hour: '2-digit',
+    minute: '2-digit',
+    year: "numeric",
+    month: "numeric",
+    day: "numeric"
+}
 
 export const ArticleForm = () => {
     const { addArticle, getArticleById, updateArticle } = useContext(ArticleContext)
@@ -16,7 +23,7 @@ export const ArticleForm = () => {
 
     const [article, setArticles] = useState({
         id: "",
-        userId: 0,
+        userId: parseInt(sessionStorage.getItem("nutshell_user")),
         title: "",
         synopsis: "",
         url: "",
@@ -31,9 +38,9 @@ export const ArticleForm = () => {
     /*
     Reach out to the world and get articles state on initialization
     */
-    // useEffect(() => {
-    //     getArticles()
-    // }, [])
+    useEffect(() => {
+        getArticles()
+    }, [])
 
     //when a field changes, update state. The return will re-render and display based on the values in state
         // NOTE! What's happening in this function can be very difficult to grasp. Read it over many times and ask a lot questions about it.
@@ -42,12 +49,13 @@ export const ArticleForm = () => {
         /* When changing a state object or array,
         always create a copy, make changes, and then set state.*/
         const newArticle = { ...article }
-        // const articleDate = new Date()
+        const dateRep = new Date()
+
         /* Animal is an object with properties.
         Set the property to the new value
         using object bracket notation. */
         newArticle[event.target.id] = event.target.value
-        // newArticle.timestamp = `${articleDate.toLocaleDateString('en-US')}`
+        newArticle.timestamp = `${dateRep.toLocaleDateString('en-US', structureOfDate)}`
         // update state
         setArticles(newArticle)
     }
@@ -76,9 +84,11 @@ export const ArticleForm = () => {
                 timestamp: article.timestamp
 
             })
+            
             .then(() => history.push("/articles"))
         }
         }
+
 
         // Get locations. If articleId is in the URL, getArticleById
 useEffect(() => {
@@ -110,20 +120,21 @@ useEffect(() => {
             <fieldset>
                 <div className="article__synopsis">
                     <label htmlFor="synopsis">Synopsis:</label>
-                    <input type="text" id="synopsis" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Synopsis" value={article.synopsis}/>
+                    <input type="text" id="synopsis" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Text" value={article.synopsis}/>
                 </div>
             </fieldset>
             <fieldset>
                 <div className="article__url">
-                    <label htmlFor="url">Url:</label>
-                    <input type="url" id="url" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Url" value={article.url}/>
+                    <label htmlFor="url">Link:</label>
+                    <input type="url" id="url" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="https://example.com" pattern="https://.*" value={article.url}/>
                 </div>
             </fieldset>
             <fieldset>
                 <div className="article__timeStamp">
                     <label htmlFor="timestamp">Timestamp:</label>
-                    <input type="timestamp" id="timestamp" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Timestamp" value={article.timestamp}/>
+                    <input type="datetime" id="timestamp" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Timestamp" value={article.timestamp}/>
                 </div>
+                
             </fieldset>
             <button className="btn btn-primary"
                 disabled={isLoading}

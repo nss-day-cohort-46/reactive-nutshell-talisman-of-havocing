@@ -30,7 +30,7 @@ export const ArticleDetail = () => {
         <section className="article">
         <h2 className="article__title">{article.title}</h2>
         <div className="article__synopsis">Synopsis: {article.synopsis}</div>
-        <div className="article__url">{article.url}</div>
+        <a className="article__url" href={ article.url }>{ article.url }</a>
         {/* What's up with the question mark???? See below.*/}
         {/* ? is testing/trying to see if the location or customer property exist */}
         <div className="article__timestamp">Timestamp: {article.timestamp}</div>
