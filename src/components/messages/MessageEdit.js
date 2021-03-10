@@ -38,7 +38,7 @@ export const MessageEdit = (id) => {
         }
     }, [])
 
-    console.log("this message", message)
+
 
     
     const handleControlledInputChange = (event) => {
@@ -63,7 +63,7 @@ export const MessageEdit = (id) => {
     }
       
     
-    console.log("thisMessage.text", thisMessage)
+
     return (
       <form className="messageForm">
         <h2 className="messageForm__title">Edit Post</h2>

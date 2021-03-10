@@ -24,7 +24,6 @@ export const MessageList = () => {
             return <MessageCard key={messageObject.id} messageInstance={messageObject} />
         })
         }
-      {console.log("MessageList: Render", messages)}
     
     </div>
     </>

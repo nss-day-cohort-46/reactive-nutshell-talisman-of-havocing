@@ -63,8 +63,6 @@ export const MessageCard = ({ messageInstance }) => {
         <section className="message">
         <h6 className="messagetimeStamp">{ newDate }</h6>
         <div className="messageText">{ messageInstance.text }</div>
-        { console.log("users", users)}
-        { console.log("user", user)}
         <div>--{user ? user.name : "no user"}</div>
         <EditDelete />
 
