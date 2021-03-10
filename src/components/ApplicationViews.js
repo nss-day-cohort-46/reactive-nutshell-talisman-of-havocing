@@ -6,6 +6,7 @@ import { MessageProvider } from "./messages/MessageProvider"
 import { EventProvider } from "./events/EventProvider"
 import { TaskProvider } from './tasks/TaskProvider'
 import { TaskList } from './tasks/TaskList'
+import { TaskForm } from './tasks/TaskForm'
 
 
 export const ApplicationViews = () => {
@@ -29,6 +30,7 @@ export const ApplicationViews = () => {
       <TaskProvider>
       <Route path="/tasks">
         <TaskList />
+        <TaskForm />
         {/* Render the component for the user's tasks */}
       </Route>
       </TaskProvider>

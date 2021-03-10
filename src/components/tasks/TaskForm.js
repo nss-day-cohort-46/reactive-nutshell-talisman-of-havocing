@@ -38,15 +38,25 @@ export const TaskForm = () =>{
    }
 
    const handleSaveTask = () => {
+      let currentUser = parseInt(sessionStorage.getItem("nutshell_user"))
        if (taskId){
            updateTask({
                id: parseInt(task.id),
                userId: parseInt(task.userId),
                name: task.name,
-               completionsDate: task.completionDate,
+               completionDate: task.completionDate,
                isComplete: task.isComplete
 
            })
+           .then(() => history.push('/tasks'))
+       }else {
+           addTask({
+               userId: currentUser,
+               name: task.name,
+               completionDate: task.completionDate,
+               isComplete: false
+           })
+           .then(() => history.push('/tasks'))
        }
    }
 
