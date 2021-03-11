@@ -4,6 +4,7 @@ import { ArticleProvider } from "./article/ArticleProvider";
 import { ArticleList } from "./article/ArticleList";
 import { ArticleDetail } from "./article/ArticleDetail";
 import { ArticleForm } from "./article/ArticleForm";
+import { ArticleSearch } from "./article/ArticleSearch";
 import { MessageList } from "./messages/MessageList"
 import { MessageProvider } from "./messages/MessageProvider"
 import { EventList } from "./events/EventList"
@@ -26,6 +27,7 @@ export const ApplicationViews = () => {
         {/* <ArticleList /> */}
       </Route>
       <Route exact path="/articles">
+        <ArticleSearch />
         {/* Render the component for news articles */}
         <ArticleList />
         {/* Render the component for list of friends */}

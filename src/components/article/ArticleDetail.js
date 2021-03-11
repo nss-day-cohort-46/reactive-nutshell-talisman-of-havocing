@@ -33,8 +33,6 @@ export const ArticleDetail = (currentUserId) => {
         <h2 className="article__title">{article.title}</h2>
         <div className="article__synopsis">Synopsis: {article.synopsis}</div>
         <a className="article__url" href={ article.url }>{ article.url }</a>
-        {/* What's up with the question mark???? See below.*/}
-        {/* ? is testing/trying to see if the location or customer property exist */}
         <div className="article__timestamp">Timestamp: {article.timestamp}</div>
         {parseInt(sessionStorage.getItem("nutshell_user")) === article.userId ?
         <div>
