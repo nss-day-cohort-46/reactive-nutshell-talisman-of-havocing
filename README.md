@@ -19,6 +19,9 @@ You will be using the React library to build out this application.
 
 To start you off, here's an example of what some of the resources in your API should look like once it's populated with some data from your application.
 
+Link to Entity Relationship Diagram:
+https://dbdiagram.io/d/604a4f94fcdcb6230b23b736
+
 ### Users
 
 ```json
