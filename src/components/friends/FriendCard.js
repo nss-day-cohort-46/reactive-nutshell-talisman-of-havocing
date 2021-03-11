@@ -13,52 +13,61 @@ export const UserCard = ({ userInstance }) => {
     const history = useHistory()
     
     const friendDelete = () => {
-        deleteFriend()
+        debugger
+        const allFriends = friends.filter(f => parseInt(f.currentUserId) === parseInt(currentUser))
+        console.log(allFriends)
+        const isFriend = allFriends.find(af => parseInt(af.friendUserId) === parseInt(userInstance.id)) 
+        const id = isFriend.id
+        deleteFriend(id)
         .then(() => {
             history.push("/friends")
         })
     }
     
-
+    
 
     useEffect(() => {
         getUsers()
         // .then(getFriends)
-        .then((response) => {
- 
-        })
-        
+        .then((response) => {})
     }, [])
     
 
-
     const handleAddFriend = () => {
         
-        newFriend({
-            
+        newFriend({            
             currentUserId: parseInt(currentUser),
-            friendUserId: parseInt(userInstance.id)
-            
+            friendUserId: parseInt(userInstance.id)            
         })
             .then(() => history.push("/friends"))
     }
     
-    const FriendDelete = () => {
+
+    const friendshipId = () => {
         
-        if (userInstance.id === parseInt(messageInstance.userId)) {
+        const userFriends = friends.filter(f => f.currentUserId === parseInt(currentUser))
+        const relationship = userFriends.find(uf => uf.friendUserId === parseInt(userInstance.id))
+        console.log(relationship)
+        return (
+            relationship
+        )
+    } 
+
+
+    const FriendDeleteButton = () => {
         
-            
+           
+        
+
             return <>
             <button onClick={friendDelete} className="button">Delete</button>
-            <button onClick={() => history.push(`/message/edit/${messageInstance.id}`)}>Edit</button>
+            
             </>
             
-        } else {
-            return null
-        }
+        
     }
      
-    const AddFriend = () => {
+    const AddFriendButton = () => {
 
         if (parseInt(currentUser) !== parseInt(userInstance.Id)) {
             return <>
@@ -72,6 +81,7 @@ export const UserCard = ({ userInstance }) => {
     const allFriends = friends.filter(f => parseInt(f.currentUserId) === parseInt(currentUser))
     console.log(allFriends)
     const isFriend = allFriends.find(af => parseInt(af.friendUserId) === parseInt(userInstance.id))    
+    console.log(isFriend)
     
     return (
             
@@ -81,7 +91,8 @@ export const UserCard = ({ userInstance }) => {
         <h6 className="messagetimeStamp"></h6>
         <div className="messageText">{ userInstance.name }</div>
         <div>{ isFriend }</div>
-        <div>{ isFriend ? <FriendDelete /> : <AddFriend /> }</div>
+        <div>{ isFriend ? <FriendDeleteButton /> : <AddFriendButton /> }</div>
+        <div><FriendDeleteButton /></div>
         
         
 

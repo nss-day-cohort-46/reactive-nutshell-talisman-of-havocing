@@ -6,7 +6,7 @@ import { FriendContext } from "./FriendProvider"
 
 
 export const FriendList = () => {
-  const { getFriends, friends } = useContext(FriendContext)
+  
   const { getUsers, users, searchTerms} = useContext(UserContext)
   // Since you are no longer ALWAYS displaying all of the users
   const [ filteredUsers, setFiltered ] = useState([])
@@ -19,7 +19,9 @@ export const FriendList = () => {
   useEffect(() => {
     if (searchTerms !== "") {
       // If the search field is not blank, display matching users
-      const subset = users.filter(user => user.name.toLowerCase().includes(searchTerms.toLowerCase))
+      const subset = users.filter(user => user.name === searchTerms)
+      console.log(subset)
+      
       setFiltered(subset)
     } else {
       // If the search field is blank, display all users
