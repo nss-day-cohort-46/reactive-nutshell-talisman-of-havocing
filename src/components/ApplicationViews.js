@@ -4,6 +4,7 @@ import { ArticleProvider } from "./article/ArticleProvider";
 import { ArticleList } from "./article/ArticleList";
 import { ArticleDetail } from "./article/ArticleDetail";
 import { ArticleForm } from "./article/ArticleForm";
+import { ArticleSearch } from "./article/ArticleSearch";
 import { MessageList } from "./messages/MessageList"
 import { MessageProvider } from "./messages/MessageProvider"
 import { EventList } from "./events/EventList"
@@ -20,26 +21,27 @@ export const ApplicationViews = () => {
 
   return (
     <>
-        <ArticleProvider>
-          <Route exact path="/">
-          {/* Render the component for news articles */}
-          {/* <ArticleList /> */}
-          </Route>
-          <Route exact path="/articles">
-          {   /* Render the component for news articles */}
-            <ArticleList />
-          {/* Render the component for list of friends */}
-          </Route>
-          <Route path="/articles/create">
-            <ArticleForm />
-          </Route>
-          <Route path="/articles/detail/:articleId(\d+)">
-            <ArticleDetail />
-          </Route>
-          <Route path="/articles/edit/:articleId(\d+)">
-            <ArticleForm />
-          </Route>   
-          </ArticleProvider> 
+      <ArticleProvider>
+      <Route exact path="/">
+        {/* Render the component for news articles */}
+        {/* <ArticleList /> */}
+      </Route>
+      <Route exact path="/articles">
+        <ArticleSearch />
+        {/* Render the component for news articles */}
+        <ArticleList />
+        {/* Render the component for list of friends */}
+      </Route>
+      <Route path="/articles/create">
+        <ArticleForm />
+      </Route>
+      <Route path="/articles/detail/:articleId(\d+)">
+        <ArticleDetail />
+      </Route>
+      <Route path="/articles/edit/:articleId(\d+)">
+        <ArticleForm />
+      </Route>   
+      </ArticleProvider> 
 
           <Route path="/friends">
         {/* Render the component for list of friends */}

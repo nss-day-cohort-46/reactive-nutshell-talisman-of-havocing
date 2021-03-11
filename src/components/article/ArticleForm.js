@@ -62,6 +62,8 @@ export const ArticleForm = () => {
 
     const handleClickSaveArticle = () => {
 
+        setIsLoading(true)
+
         if (articleId){
             //PUT - update
             updateArticle({
@@ -72,7 +74,9 @@ export const ArticleForm = () => {
                 url: article.url,
                 timestamp: article.timestamp
             })
+
             .then(() => history.push(`/articles/detail/${article.id}`))
+
         }else {
             //POST - add
             addArticle({
@@ -82,31 +86,29 @@ export const ArticleForm = () => {
                 synopsis: article.synopsis,
                 url: article.url,
                 timestamp: article.timestamp
-
             })
-            
+
             .then(() => history.push("/articles"))
         }
         }
 
+        // Get articles. If articleId is in the URL, getArticleById
+    useEffect(() => {
+        getArticles().then(() => {
 
-        // Get locations. If articleId is in the URL, getArticleById
-useEffect(() => {
-    getArticles().then(() => {
-
-        // if there is data
-    if (articleId) {
-        getArticleById(articleId)
-        .then(article => {
-            setArticles(article)
+            // if there is data
+        if (articleId) {
+            getArticleById(articleId)
+            .then(article => {
+                setArticles(article)
+                setIsLoading(false)
+            })
+        } else {
+            // else there is no data
             setIsLoading(false)
+        }
         })
-    } else {
-        // else there is no data
-        setIsLoading(false)
-    }
-    })
-}, [])
+    }, [])
 
         return (
         <form className="articleForm">
@@ -143,7 +145,8 @@ useEffect(() => {
                     event.preventDefault()
                     handleClickSaveArticle()
                 }}>
-                {articleId ? "Save Article" : "Add Article"}</button>
+                {articleId ? "Save Article" : "Add Article"}
+            </button>
         </form>
     )
 }
