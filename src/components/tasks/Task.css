@@ -22,10 +22,19 @@
     align-items: baseline;
 }
 #taskComplete{
-    width: 1.6em;
+    width: 1.4em;
     margin-left: .3em;
     /* flex-direction: column; */
 }
 .tasks h3{
     text-align: center;
+}
+
+.taskForm{
+    border: 1px solid black;
+    margin: 5em;
+    padding: .3em;
+    /* display: flex; */
+    width: 50%;
+
 }
