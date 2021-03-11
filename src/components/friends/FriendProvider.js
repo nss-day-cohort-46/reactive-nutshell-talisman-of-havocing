@@ -41,13 +41,13 @@ export const FriendProvider = (props) => {
     }
 
 
-
+    
     
 
     //return the functions you want available
     return (
         <FriendContext.Provider value={{
-            friends, getFriends, newFriend, getFriendById, deleteFriend 
+            friends, getFriends, newFriend, getFriendById, deleteFriend
         }}>
             {props.children}
         </FriendContext.Provider>

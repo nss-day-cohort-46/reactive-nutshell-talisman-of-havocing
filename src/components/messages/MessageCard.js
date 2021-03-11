@@ -72,9 +72,10 @@ export const MessageCard = ({ messageInstance }) => {
      
     const AddFriend = () => {
 
-        const allFriends = friends.filter(f => f.currentUserId === parseInt(currentUser))
-        console.log(allFriends)
-
+        console.log("allFriends:", allFriends)
+        const isFriend = allFriends.find(af => parseInt(af.friendUserId) === parseInt(messageInstance.userId))
+        console.log("isFriend:", isFriend)
+        
         if (parseInt(currentUser) !== parseInt(messageInstance.userId)) {
             return <>
             <button onClick={handleAddFriend} className="button">Add Friend</button>
@@ -83,18 +84,20 @@ export const MessageCard = ({ messageInstance }) => {
             return null
         }
     }
-        
-        
+    
+    const allFriends = friends.filter(f => f.currentUserId === parseInt(currentUser))
+    const isFriend = allFriends.find(af => parseInt(af.friendUserId) === parseInt(messageInstance.userId))    
     return (
             
             
         // const editDelete = () => {
-        <section className="message">
+        <section className={`message message--` + messageInstance.id}>
         <h6 className="messagetimeStamp">{ newDate }</h6>
         <div className="messageText">{ messageInstance.text }</div>
         <div>--{user ? user.name : "no user"}</div>
+        <div>{ isFriend ? null : <AddFriend /> }</div>
         <EditDelete />
-        <AddFriend />
+        
 
     </section>
     )

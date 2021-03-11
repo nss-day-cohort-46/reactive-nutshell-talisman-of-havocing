@@ -10,7 +10,8 @@ import { MessageEdit } from "./messages/MessageEdit"
 import { TaskProvider } from './tasks/TaskProvider'
 import { TaskList } from './tasks/TaskList'
 import { FriendProvider } from "./friends/FriendProvider"
-
+import { UserSearch } from "./friends/UserSearch"
+import { FriendList } from "./friends/FriendList"
 
 
 export const ApplicationViews = () => {
@@ -21,9 +22,15 @@ export const ApplicationViews = () => {
       <Route exact path="/">
         {/* Render the component for list of friends */}
       </Route>
-      <Route path="/friends">
-        {/* Render the component for list of friends */}
-      </Route>
+      <FriendProvider>
+        <UserProvider>
+          <Route path="/friends">
+            <UserSearch />
+            <FriendList />
+            {/* Render the component for list of friends */}
+          </Route>
+        </UserProvider>  
+      </FriendProvider>
       <MessageProvider>
         <FriendProvider>
           <UserProvider>
