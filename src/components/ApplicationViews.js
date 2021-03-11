@@ -59,16 +59,18 @@ export const ApplicationViews = () => {
       </MessageProvider>
       
       <TaskProvider>
-      <Route path="/tasks">
-        <TaskList />
+        <Route path="/tasks">
+          <TaskList />
         {/* Render the component for the user's tasks */}
         </Route>
-        
-        
-      <Route path="/tasks/create">
-        <TaskForm />
-      </Route>
+        <Route path="/tasks/create">
+          <TaskForm />
+        </Route>
+        <Route exact path="/tasks/edit/:taskId(\d+)">
+          <TaskForm />
+        </Route> 
       </TaskProvider>
+      
       <Route exact path="/events">
         <EventProvider>
           <EventList />

@@ -83,7 +83,7 @@ export const TaskForm = () =>{
               event.preventDefault()
               handleSaveTask()
             }}>
-            {taskId ? "Add Task" : "Save"}
+            {taskId ? "Save" : "Add Task"}
           </button>
           
         </form>
