@@ -8,17 +8,17 @@ import "./Task.css"
 
 export const Task = ({ task }) =>{
     const history = useHistory(); 
-    const { getTasks, updateTask } = useContext(TaskContext)
+    const { getTasks, updateTask, deleteTask } = useContext(TaskContext)
     //   const [taskComplete, setTaskComplete] = useState()
       // User can select if task is complete. Will change isComplete in db
-      const handleControlledInputChange = (event) => {
-          let completedTask = document.querySelector(".task")
-          if(event.target.checked === true){
-              task.isComplete = true
-              completedTask.style.display = "none"
-          }else {
-              task.isComplete = false
-          }
+    const handleControlledInputChange = (event) => {
+        // let completedTask = document.querySelector(".task")
+        if(event.target.checked === true){
+            task.isComplete = true
+            // completedTask.style.display = "none"
+        }else {
+            task.isComplete = false
+        }
           updateTask({
               id: task.id,
               userId: task.userId,
@@ -29,6 +29,13 @@ export const Task = ({ task }) =>{
           .then(() => history.push('/tasks'))
           
           
+      }
+
+      const handleDelete = () => {
+        deleteTask(task.id)
+          .then(() => {
+            history.push("/tasks")
+          })
       }
   
     const taskCompletionDate = new Date(task.completionDate).toLocaleDateString('en-US', {timeZone: "CST"})
@@ -41,6 +48,7 @@ export const Task = ({ task }) =>{
             <input type="checkbox" id="taskComplete" onChange={handleControlledInputChange} 
                 required autoFocus className="form-control" value={task.isComplete} defaultChecked={task.isComplete ? true : false} />
         </div>
+        <button onClick={handleDelete}>X</button>
     </section>
     </>
 )}
