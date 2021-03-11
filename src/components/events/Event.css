@@ -1,6 +1,8 @@
 .eventListH3 {
     margin-top: 10px;
     margin-bottom: 5px;
+    margin-left: 20px;
+    font-size: 40px;
 }
 
 .eventCardP {
@@ -22,6 +24,7 @@
 .newEventButton {
     margin-top: 2px;
     margin-right: 2px;
+    margin-bottom: 2px;
 }
 
 .modal--parent {
@@ -60,3 +63,16 @@
     font-size: 15px;
     text-decoration: wavy;
 }
+
+.deleteEventButton {
+    border: none;
+    background-color: white;
+    color: red;
+    margin-left: 10px;
+    padding-left: 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+    font-size: 15px;
+    text-decoration: wavy;
+}
+
