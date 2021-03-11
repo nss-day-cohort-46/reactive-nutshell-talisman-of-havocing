@@ -49,6 +49,7 @@ export const Task = ({ task }) =>{
                 required autoFocus className="form-control" value={task.isComplete} defaultChecked={task.isComplete ? true : false} />
         </div>
         <button onClick={handleDelete}>X</button>
+        <button onClick={handleDelete}>X</button>
     </section>
     </>
 )}
