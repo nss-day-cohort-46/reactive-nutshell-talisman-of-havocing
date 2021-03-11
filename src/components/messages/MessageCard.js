@@ -2,16 +2,20 @@ import React, { useContext, useEffect, useState } from "react"
 import { MessageContext } from "./MessageProvider"
 import { useHistory } from "react-router-dom"
 import { UserContext } from "../users/UserProvider"
+import { FriendContext } from "../friends/FriendProvider"
+
 
 //HTML to display individual messages
 export const MessageCard = ({ messageInstance }) => {
     const { getMessageById, deleteMessage, editMessage, getMessages } = useContext(MessageContext)
     const { users, getUsers } = useContext(UserContext)
+    const { friends, getFriends } = useContext(FriendContext)
     
     const [message, setMessage] = useState({})
     
     
     let user = users.find(user => user.id === parseInt(messageInstance.userId))
+ 
     
     const history = useHistory()
 
@@ -26,6 +30,7 @@ export const MessageCard = ({ messageInstance }) => {
     
     useEffect(() => {
         getUsers()
+        
         .then(getMessageById(messageInstance.id))
         .then((response) => {
           setMessage(response)
@@ -36,8 +41,19 @@ export const MessageCard = ({ messageInstance }) => {
         
     const currentUser = sessionStorage.getItem("nutshell_user")
 
-    
-
+    const { newFriend } = useContext(FriendContext)
+    const handleAddFriend = () => {
+        //disable the button - no extra clicks
+        
+          //POST - add
+        newFriend({
+            
+            currentUserId: parseInt(currentUser),
+            friendUserId: parseInt(messageInstance.userId)
+            
+        })
+            .then(() => history.push("/messages"))
+    }
     
     const EditDelete = () => {
         
@@ -53,18 +69,35 @@ export const MessageCard = ({ messageInstance }) => {
             return null
         }
     }
+     
+    const AddFriend = () => {
+
+        console.log("allFriends:", allFriends)
+        const isFriend = allFriends.find(af => parseInt(af.friendUserId) === parseInt(messageInstance.userId))
+        console.log("isFriend:", isFriend)
         
-        
-        
+        if (parseInt(currentUser) !== parseInt(messageInstance.userId)) {
+            return <>
+            <button onClick={handleAddFriend} className="button">Add Friend</button>
+            </>
+        } else {
+            return null
+        }
+    }
+    
+    const allFriends = friends.filter(f => f.currentUserId === parseInt(currentUser))
+    const isFriend = allFriends.find(af => parseInt(af.friendUserId) === parseInt(messageInstance.userId))    
     return (
             
             
         // const editDelete = () => {
-        <section className="message">
+        <section className="card">
         <h6 className="messagetimeStamp">{ newDate }</h6>
         <div className="messageText">{ messageInstance.text }</div>
         <div>--{user ? user.name : "no user"}</div>
+        <div>{ isFriend ? null : <AddFriend /> }</div>
         <EditDelete />
+        
 
     </section>
     )

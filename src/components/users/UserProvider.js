@@ -52,12 +52,12 @@ export const UserProvider = (props) => {
           .then(getUsers)
       }
 
-    
+    const [ searchTerms, setSearchTerms ] = useState("")
 
     //return the functions you want available
     return (
         <UserContext.Provider value={{
-            users, getUsers, newUser, getUserById, deleteUser, editUser
+            users, getUsers, newUser, getUserById, deleteUser, editUser, searchTerms, setSearchTerms
         }}>
             {props.children}
         </UserContext.Provider>
