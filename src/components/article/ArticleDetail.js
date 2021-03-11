@@ -32,7 +32,7 @@ export const ArticleDetail = (currentUserId) => {
         <div className="article">
         <h2 className="article__title">{article.title}</h2>
         <div className="article__synopsis">Synopsis: {article.synopsis}</div>
-        <a className="article__url" href={ article.url }>{ article.url }</a>
+        <a className="article__url" href={ article.url } target="_blank">{ article.url }</a>
         <div className="article__timestamp">Timestamp: {article.timestamp}</div>
         {parseInt(sessionStorage.getItem("nutshell_user")) === article.userId ?
         <div>
