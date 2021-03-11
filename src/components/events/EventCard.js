@@ -13,9 +13,12 @@ export const EventCard = ({ eventObj, eventCounter }) => {
     const eventDay = dayOfTheWeek[theDate.getDay()]
     const [openForm, setOpenForm] = useState(false)
     const [openWeather, setOpenWeather] = useState(false)
+    const [forecast, setForecast] = useState([])
     const loggedInUserId = parseInt(sessionStorage.getItem("nutshell_user"))
     const { deleteEvent } = useContext(EventContext)
-    const { getWeather, forecast } = useContext(WeatherContext)
+    const { getWeather } = useContext(WeatherContext)
+    const { events } = useContext(EventContext)
+
     let headerInputStyle = {}
     let paragraphInputStyle = {}
     let sectionInputStyle = {
@@ -61,9 +64,9 @@ export const EventCard = ({ eventObj, eventCounter }) => {
         setOpenWeather(true)
     }
 
-    useEffect(() => {
-        getWeather(eventObj.city, eventObj.state)
-    }, [])
+    // useEffect(() => {
+    //     getWeather(eventObj.city, eventObj.state).then(response => setForecast(response))
+    // }, [])
 
     return (
         <>
@@ -74,14 +77,14 @@ export const EventCard = ({ eventObj, eventCounter }) => {
                         <p style={paragraphInputStyle} className="eventCardP">{eventDay} - {eventDate}</p>
                         <p style={paragraphInputStyle} className="eventCardP">{eventTime} @ {eventObj.venue} in {eventObj.city}, {eventObj.state}</p>
                     </div>
-                    {forecast ? <button className="openWeatherButton" onClick={handleClickOpenWeather}>Weather</button> : <p>no weather data available for this city/date</p>}
+                    <button className="openWeatherButton" onClick={handleClickOpenWeather}>Weather</button>
                 </div>
                 <div>
                     {editButton ? <button style={buttonInputStyle} className="editEventButton" onClick={handleClickAddEvent}>edit</button> : ""}
                     {editButton ? <button style={buttonInputStyle} className="deleteEventButton" onClick={handleClickDeleteEvent}>delete</button> : ""}
                 </div>
                 {openForm && <EventForm setOpenForm={setOpenForm} eventId={eventObj.id} />}
-                {openWeather && <WeatherModal setOpenWeather={setOpenWeather} eventObj={eventObj} />}
+                {openWeather && <WeatherModal setOpenWeather={setOpenWeather} eventObj={eventObj} forecast={forecast} />}
             </section>
         </>
     )
