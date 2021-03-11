@@ -28,13 +28,13 @@ export const MessageProvider = (props) => {
 
     //function to get message by ID
     const getMessageById = (id) => {
-        return fetch(`http://localhost:8088/messages/${id}?_expand=location&_expand=customer`)
+        return fetch(`http://localhost:8088/messages/${id}`)
             .then(res => res.json())
     }
 
     //function to delete a message
     const deleteMessage = messageId => {
-        return fetch(`http://localhost:8088/messages/${messageId}?_expand=location`, {
+        return fetch(`http://localhost:8088/messages/${messageId}`, {
             method: "DELETE"
         })
             .then(getMessages)

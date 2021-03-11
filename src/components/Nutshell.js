@@ -1,11 +1,10 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Route, Redirect } from "react-router-dom"
 import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import "./Nutshell.css"
-
 
 export const Nutshell = () => (
   <>
@@ -14,11 +13,8 @@ export const Nutshell = () => (
         if (sessionStorage.getItem("nutshell_user")) {
           return (
             <>
-            
-            <NavBar />
-            <ApplicationViews />
-            
-            
+              <NavBar />
+              <ApplicationViews />
             </>
           )
         } else {
