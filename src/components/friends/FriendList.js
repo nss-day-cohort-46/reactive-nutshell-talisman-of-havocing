@@ -18,10 +18,9 @@ export const FriendList = () => {
 
   useEffect(() => {
     if (searchTerms !== "") {
+     
       // If the search field is not blank, display matching users
-      const subset = users.filter(user => user.name === searchTerms)
-      console.log(subset)
-      
+      const subset = users.filter(user => user.name.toLowerCase().includes(searchTerms.toLowerCase()))
       setFiltered(subset)
     } else {
       // If the search field is blank, display all users
@@ -31,7 +30,7 @@ export const FriendList = () => {
 
     return (
       <>
-          <h1>Friends</h1>
+          <h1 className="title">Friends</h1>
 
           
           <div className="users">

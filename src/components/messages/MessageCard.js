@@ -91,7 +91,7 @@ export const MessageCard = ({ messageInstance }) => {
             
             
         // const editDelete = () => {
-        <section className={`message message--` + messageInstance.id}>
+        <section className="card">
         <h6 className="messagetimeStamp">{ newDate }</h6>
         <div className="messageText">{ messageInstance.text }</div>
         <div>--{user ? user.name : "no user"}</div>

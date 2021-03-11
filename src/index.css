@@ -14,7 +14,7 @@ code {
     monospace;
 }
 
-.message {
+.card {
   padding: 10px;
   border: 2px solid black;
   border-radius: 10px;
@@ -31,5 +31,9 @@ code {
 }
 
 .messageForm {
+  margin: 10px;
+}
+
+.title {
   margin: 10px;
 }

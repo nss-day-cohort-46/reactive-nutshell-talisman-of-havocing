@@ -16,6 +16,7 @@ export const FriendProvider = (props) => {
 
     //POST function
     const newFriend = friendObj => {
+        
         return fetch("http://localhost:8088/friends", {
             method: "POST",
             headers: {

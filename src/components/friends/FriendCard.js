@@ -13,9 +13,8 @@ export const UserCard = ({ userInstance }) => {
     const history = useHistory()
     
     const friendDelete = () => {
-        debugger
+        
         const allFriends = friends.filter(f => parseInt(f.currentUserId) === parseInt(currentUser))
-        console.log(allFriends)
         const isFriend = allFriends.find(af => parseInt(af.friendUserId) === parseInt(userInstance.id)) 
         const id = isFriend.id
         deleteFriend(id)
@@ -56,9 +55,6 @@ export const UserCard = ({ userInstance }) => {
 
     const FriendDeleteButton = () => {
         
-           
-        
-
             return <>
             <button onClick={friendDelete} className="button">Delete</button>
             
@@ -87,12 +83,11 @@ export const UserCard = ({ userInstance }) => {
             
             
         // const editDelete = () => {
-        <section className="message">
+        <section className="card">
         <h6 className="messagetimeStamp"></h6>
         <div className="messageText">{ userInstance.name }</div>
-        <div>{ isFriend }</div>
         <div>{ isFriend ? <FriendDeleteButton /> : <AddFriendButton /> }</div>
-        <div><FriendDeleteButton /></div>
+        
         
         
 
