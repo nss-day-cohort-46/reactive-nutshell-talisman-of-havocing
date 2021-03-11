@@ -15,19 +15,19 @@ export const TaskList = () => {
 
     let userTasks = tasks.filter(task => loggedInUser === task.userId)
     const history = useHistory()
-    const handleAddTask = () => {
-
-    }
+     
 
     return (
+        <>
         <div className="tasks">
             <h3>To-Do</h3>
             <button onClick={() => {history.push("/tasks/create")}}>+</button>
         {
-            userTasks.map(task => {
-                return <Task key={task.id} task={task} />
-            })
+            userTasks.map(task => !task.isComplete ? 
+                <Task key={task.id} task={task} /> : <div key={task.id}></div>
+            )
         }
         </div>
+        </>
     )
 }
