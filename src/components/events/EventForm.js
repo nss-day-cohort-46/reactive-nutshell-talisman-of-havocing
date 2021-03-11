@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react"
 import "./Event.css"
-import { useHistory, useParams } from 'react-router-dom';
 import { EventContext } from "./EventProvider";
 
-export const EventForm = ({ setOpenForm,  eventId }) => {
+export const EventForm = ({ setOpenForm, eventId }) => {
     const { updateEvent, addEvent, getEventById } = useContext(EventContext)
     const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 
@@ -11,7 +10,9 @@ export const EventForm = ({ setOpenForm,  eventId }) => {
         userId: currentUserId,
         name: "",
         date: "",
-        location: "",
+        city: "",
+        state: "",
+        venue: "",
     });
 
     const [isLoading, setIsLoading] = useState(true)
@@ -32,7 +33,9 @@ export const EventForm = ({ setOpenForm,  eventId }) => {
                 userId: anEvent.userId,
                 name: anEvent.name,
                 date: anEvent.date,
-                location: anEvent.location,
+                city: anEvent.city,
+                state: anEvent.state,
+                venue: anEvent.venue,
             })
                 .then(() => setOpenForm(false))
         } else {
@@ -78,7 +81,11 @@ export const EventForm = ({ setOpenForm,  eventId }) => {
                     <fieldset>
                         <div className="form-group">
                             <label htmlFor="name">Event Location:</label>
-                            <input type="text" id="location" onChange={handleControlledInputChange} required className="form-control" placeholder="event location" value={anEvent.location} />
+                            <input type="text" id="venue" onChange={handleControlledInputChange} required className="form-control" placeholder="venue" value={anEvent.venue} />
+                            <div className="eventFormLocationCityState">
+                                <input type="text" id="city" onChange={handleControlledInputChange} required className="form-control" placeholder="city Ex:Nashville" value={anEvent.city} />
+                                <input type="text" id="state" onChange={handleControlledInputChange} required className="form-control" placeholder="state ex:Tn" value={anEvent.state} />
+                            </div>
                         </div>
                     </fieldset>
                     <button disabled={isLoading} className="btn btn-primary" onClick={handleClicksSaveEvent}>{eventId ? "Submit Edit" : "Save New Event"}</button>

@@ -46,88 +46,13 @@
   ],
   "events": [
     {
+      "id": 1,
       "userId": 1,
-      "name": "Nutshell End",
-      "date": "2021-03-12T10:15",
-      "location": "Nashville Software School",
-      "id": 6
-    },
-    {
-      "userId": 1,
-      "name": "The Event List",
-      "date": "2021-03-09T14:45",
-      "location": "Nashville Software School",
-      "id": 7
-    },
-    {
-      "userId": 1,
-      "name": "The Event List That Updates",
-      "date": "2021-03-09T14:49",
-      "location": "Nashville Software School",
-      "id": 8
-    },
-    {
-      "userId": 1,
-      "name": "Hey Nick Look At Me",
-      "date": "2021-03-09T14:56",
-      "location": "Nashville Software School",
-      "id": 9
-    },
-    {
-      "userId": 1,
-      "name": "Tuesdays Event",
-      "date": "2021-03-09T15:00",
-      "location": "Nashville Software School",
-      "id": 10
-    },
-    {
-      "userId": 1,
-      "name": "asdfghjk",
-      "date": "2021-03-09T15:02",
-      "location": "asd",
-      "id": 11
-    },
-    {
-      "userId": 1,
-      "name": "asdfghjkl",
-      "date": "2021-03-09T15:07",
-      "location": "asdfghjkl",
-      "id": 12
-    },
-    {
-      "userId": 1,
-      "name": "NICKKKKK",
-      "date": "2021-03-09T15:15",
-      "location": "Nashville Software School",
-      "id": 13
-    },
-    {
-      "userId": 1,
-      "name": "Nick Carver's Employee Name",
-      "date": "2021-03-09T15:16",
-      "location": "Nashville Software School",
-      "id": 14
-    },
-    {
-      "userId": 1,
-      "name": "A brand new event",
-      "date": "2021-03-08T15:41",
-      "location": "Nashville Software School",
-      "id": 15
-    },
-    {
-      "userId": 1,
-      "name": "The newest event",
-      "date": "2021-03-07T15:44",
-      "location": "Nashville Software School",
-      "id": 16
-    },
-    {
-      "userId": 1,
-      "name": "the new",
-      "date": "2021-03-05T15:50",
-      "location": "Nashville Software School",
-      "id": 17
+      "name": "Jisie Leaving NSS",
+      "date": "2021-04-01T11:00",
+      "city": "chicago",
+      "state": "il",
+      "venue": "Another Employer"
     }
   ],
   "tasks": [

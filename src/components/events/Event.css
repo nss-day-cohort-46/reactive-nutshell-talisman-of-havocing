@@ -76,3 +76,25 @@
     text-decoration: wavy;
 }
 
+.eventCardData {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.eventFormLocationCityState {
+    display: flex;
+}
+
+#city {
+    flex-basis: 60%;
+}
+
+#state {
+    margin-left: 10px;
+    flex-basis: 20%;
+}
+
+#venue {
+    margin-bottom: 10px;
+}
