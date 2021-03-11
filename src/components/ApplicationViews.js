@@ -4,6 +4,7 @@ import { ArticleProvider } from "./article/ArticleProvider";
 import { ArticleList } from "./article/ArticleList";
 import { ArticleDetail } from "./article/ArticleDetail";
 import { ArticleForm } from "./article/ArticleForm";
+import { ArticleSearch } from "./article/ArticleSearch";
 import { MessageList } from "./messages/MessageList"
 import { MessageProvider } from "./messages/MessageProvider"
 import { EventList } from "./events/EventList"
@@ -24,6 +25,7 @@ export const ApplicationViews = () => {
 
   return (
     <>
+
 
       <Route exact path="/">
         {/* Render the component for list of friends */}
@@ -72,6 +74,7 @@ export const ApplicationViews = () => {
             <ArticleForm />
           </Route>   
           </ArticleProvider> 
+
       
       <TaskProvider>
       <Route path="/tasks">

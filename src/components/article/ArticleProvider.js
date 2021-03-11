@@ -7,6 +7,8 @@ export const ArticleContext = createContext()
 export const ArticleProvider = (props) => {
     const [articles, setArticles] = useState([])
 
+    const [ searchTerms, setSearchTerms ] = useState("")
+
     // useState([])  is to hold and set the array of articles
     // useState() hook to define a variable that holds the state of the component, and a function that updates it.
     const timestampDate = (currurentDate, followingDate) => {
@@ -74,7 +76,7 @@ return fetch(`http://localhost:8088/articles/${article.id}`, {
     <ArticleContext.Provider value={{
     //   articles: articles, 
     //   getArticles: getArticles
-        articles, getArticles, addArticle, getArticleById, deleteArticle, updateArticle
+        articles, getArticles, addArticle, getArticleById, deleteArticle, updateArticle, searchTerms, setSearchTerms
     }}>
         {props.children}
         </ArticleContext.Provider>
