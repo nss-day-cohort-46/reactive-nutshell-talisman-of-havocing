@@ -8,10 +8,6 @@ export const WeatherModal = ({ setOpenWeather, eventObj }) => {
         setOpenWeather(false)
     }
 
-    useEffect(() => {
-        console.log("use effect")
-    }, [])
-
     return (
         <div id="eventForm__modal" className="modal--parent">
             <div className="modal--content">

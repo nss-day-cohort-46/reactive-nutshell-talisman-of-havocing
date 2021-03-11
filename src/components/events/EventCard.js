@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
 import { WeatherModal } from '../weather/WeatherModal'
-import { WeatherContext } from '../weather/WeatherProvider'
 import './Event.css'
 import { EventForm } from './EventForm'
 import { EventContext } from "./EventProvider"
+import { WeatherContext } from "../weather/WeatherProvider"
 
 export const EventCard = ({ eventObj, eventCounter }) => {
     const theDate = new Date(eventObj.date)
@@ -15,7 +15,7 @@ export const EventCard = ({ eventObj, eventCounter }) => {
     const [openWeather, setOpenWeather] = useState(false)
     const loggedInUserId = parseInt(sessionStorage.getItem("nutshell_user"))
     const { deleteEvent } = useContext(EventContext)
-    const { getWeather } = useContext(WeatherContext)
+    const { getWeather, forecast } = useContext(WeatherContext)
     let headerInputStyle = {}
     let paragraphInputStyle = {}
     let sectionInputStyle = {
@@ -74,7 +74,7 @@ export const EventCard = ({ eventObj, eventCounter }) => {
                         <p style={paragraphInputStyle} className="eventCardP">{eventDay} - {eventDate}</p>
                         <p style={paragraphInputStyle} className="eventCardP">{eventTime} @ {eventObj.venue} in {eventObj.city}, {eventObj.state}</p>
                     </div>
-                    <button className="openWeatherButton" onClick={handleClickOpenWeather}>Weather</button>
+                    {forecast ? <button className="openWeatherButton" onClick={handleClickOpenWeather}>Weather</button> : <p>no weather data available for this city/date</p>}
                 </div>
                 <div>
                     {editButton ? <button style={buttonInputStyle} className="editEventButton" onClick={handleClickAddEvent}>edit</button> : ""}
