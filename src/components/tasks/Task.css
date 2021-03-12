@@ -1,0 +1,40 @@
+.tasks{
+    border: 1px solid black;
+    margin: 5em;
+    padding: 2em;
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.task__checkbox{
+    display: flex;
+    
+}
+.task{
+    border: .5px dotted black;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: .5em;
+    justify-content: space-between;
+    flex-basis: 28%;
+    align-items: baseline;
+}
+#taskComplete{
+    width: 1.4em;
+    margin-left: .3em;
+    /* flex-direction: column; */
+}
+.tasks h3{
+    text-align: center;
+}
+
+.taskForm{
+    border: 1px solid black;
+    margin: 5em;
+    padding: .3em;
+    /* display: flex; */
+    width: 50%;
+
+}
