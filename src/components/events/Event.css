@@ -103,3 +103,8 @@
     border: 1px gainsboro solid;
     border-radius: 5px;
 }
+
+.eventsContainer {
+    width: 40%;
+    height: 400px;
+}
