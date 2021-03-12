@@ -30,7 +30,7 @@ export const MessageCard = ({ messageInstance }) => {
     
     useEffect(() => {
         getUsers()
-        
+        .then(getFriends)
         .then(getMessageById(messageInstance.id))
         .then((response) => {
           setMessage(response)
