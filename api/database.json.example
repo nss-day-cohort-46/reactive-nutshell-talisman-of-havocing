@@ -50,9 +50,27 @@
       "userId": 1,
       "name": "Jisie Leaving NSS",
       "date": "2021-04-01T11:00",
-      "city": "chicago",
-      "state": "il",
+      "city": "Nashville",
+      "state": "TN",
       "venue": "Another Employer"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "name": "Us Graduating NSS",
+      "date": "2021-06-30T16:00",
+      "city": "Bowling Green",
+      "state": "KY",
+      "venue": "Another Employer"
+    },
+    {
+      "userId": 1,
+      "name": "Going on Vacation",
+      "date": "2021-03-13T14:32",
+      "city": "Nowheresville",
+      "state": "Living Room",
+      "venue": "Coast of Scotland",
+      "id": 3
     }
   ],
   "tasks": [
