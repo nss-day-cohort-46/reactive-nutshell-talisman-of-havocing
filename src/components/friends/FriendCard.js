@@ -33,7 +33,7 @@ export const UserCard = ({ userInstance }) => {
 
     useEffect(() => {
         getUsers()
-        // .then(getFriends)
+        .then(getFriends)
         .then((response) => {})
     }, [])
     
