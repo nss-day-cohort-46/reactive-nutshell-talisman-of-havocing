@@ -8,6 +8,36 @@
     flex-basis: 28%;
     margin: 1em;
     padding: 1em;
-    border: 1px solid rgb(111, 24, 161);
+    border: 1px solid black;
+    border-radius: 0.5em;
+}
 
+.article__url {
+    color: black
+}
+
+.article__newsArticleTitle {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    font-size: 40px;
+}
+
+.deleteArticleButton {
+    background-color: rgb(0, 119, 255);
+    color: white;
+    margin: 0.2em;
+    padding: 0.2em;
+    font-size: 18px;
+    text-decoration: wavy;
+    border-radius: 0.1em;
+}
+
+.editArticleButton {
+    color: black;
+    margin: 0.2em;
+    padding: 0.2em;
+    font-size: 18px;
+    text-decoration: wavy;
+    border-radius: 0.1em;
 }

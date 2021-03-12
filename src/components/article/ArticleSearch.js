@@ -7,7 +7,7 @@ export const ArticleSearch = () => {
 
     return (
         <>
-        Article search:
+        Article Search:
         <input type="text"
             className="input--wide"
             onKeyUp={(event) => setSearchTerms(event.target.value)}
