@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { WeatherModal } from '../weather/WeatherModal'
 import './Event.css'
 import { EventForm } from './EventForm'
 import { EventContext } from "./EventProvider"
-import { WeatherContext } from "../weather/WeatherProvider"
 
 export const EventCard = ({ eventObj, eventCounter }) => {
     const theDate = new Date(eventObj.date)
@@ -13,11 +12,8 @@ export const EventCard = ({ eventObj, eventCounter }) => {
     const eventDay = dayOfTheWeek[theDate.getDay()]
     const [openForm, setOpenForm] = useState(false)
     const [openWeather, setOpenWeather] = useState(false)
-    const [forecast, setForecast] = useState([])
     const loggedInUserId = parseInt(sessionStorage.getItem("nutshell_user"))
     const { deleteEvent } = useContext(EventContext)
-    const { getWeather } = useContext(WeatherContext)
-    const { events } = useContext(EventContext)
 
     let headerInputStyle = {}
     let paragraphInputStyle = {}
@@ -64,10 +60,6 @@ export const EventCard = ({ eventObj, eventCounter }) => {
         setOpenWeather(true)
     }
 
-    // useEffect(() => {
-    //     getWeather(eventObj.city, eventObj.state).then(response => setForecast(response))
-    // }, [])
-
     return (
         <>
             <section style={sectionInputStyle}>
@@ -84,7 +76,7 @@ export const EventCard = ({ eventObj, eventCounter }) => {
                     {editButton ? <button style={buttonInputStyle} className="deleteEventButton" onClick={handleClickDeleteEvent}>delete</button> : ""}
                 </div>
                 {openForm && <EventForm setOpenForm={setOpenForm} eventId={eventObj.id} />}
-                {openWeather && <WeatherModal setOpenWeather={setOpenWeather} eventObj={eventObj} forecast={forecast} />}
+                {openWeather && <WeatherModal setOpenWeather={setOpenWeather} eventObj={eventObj} />}
             </section>
         </>
     )

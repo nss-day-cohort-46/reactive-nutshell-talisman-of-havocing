@@ -6,7 +6,10 @@ export const WeatherModal = ({ setOpenWeather, eventObj }) => {
     const { getWeather, forecast } = useContext(WeatherContext)
     const theDate = new Date(eventObj.date)
     const eventDate = theDate.toLocaleDateString('en-US', { timeZone: "CST" })
-    const [eventForecast, seteventForecast] = useState()
+    const [eventForecast, seteventForecast] = useState({
+        maxTemp: 0,
+        mainWeather: ""
+    })
 
     const handleCancel = (event) => {
         event.preventDefault()
@@ -17,21 +20,27 @@ export const WeatherModal = ({ setOpenWeather, eventObj }) => {
         getWeather(eventObj.city, eventObj.state)
     }, [])
 
-    if (forecast.list) {
-        debugger
-        console.log(eventObj.date.toUTCString())
-        const dayOfEventForecast = forecast.list.filter(object => object.dt_txt.startsWith(eventObj.date.toLocaleTimeString('en-US', { timeZone: "CST", hour: '2-digit', minute: '2-digit' }).substring(0,10)))
-        console.log(dayOfEventForecast)
-        const timeOfEventForecast = dayOfEventForecast.find(object => object.dt_txt.substring(12,13) === eventObj.date.substring(12,13))
-        console.log(timeOfEventForecast)
-    }
+    useEffect(() => {
+        if (forecast.list) {
+            let updatedForecast = {
+                maxTemp: forecast.list[0].main.temp_max,
+                mainWeather: forecast.list[0].weather[0].description
+            }
+            seteventForecast(updatedForecast)
+        }
+    }, [forecast])
 
     return (
         <div id="weather__modal" className="modal--parent">
-            <div className="modal--content">
+            <div className="modal--content weatherContent">
                 <h3>{eventObj.name}</h3>
                 <h5>{eventDate} - {eventObj.city}, {eventObj.state}</h5>
                 <h6>predicted forecast</h6>
+                <div className="predictedForecast">
+                    <h3>High</h3>
+                    <h4>{eventForecast.maxTemp.toFixed(0)}˚F</h4>
+                    <h5>{eventForecast.mainWeather}</h5>
+                </div>
                 <button className="btn weatherButton" onClick={handleCancel}>close</button>
             </div>
         </div>
