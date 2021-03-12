@@ -1,26 +1,32 @@
 import React, { useContext, useEffect, useState } from "react"
-import { useHistory } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { UserContext } from "../users/UserProvider"
 import { FriendContext } from "./FriendProvider"
+
 
 
 //HTML to display individual friends
 export const UserCard = ({ userInstance }) => {
     const { getFriendById, newFriend, friends, getFriends, deleteFriend } = useContext(FriendContext)
-    const { users, getUsers } = useContext(UserContext)
+    const { users, getUsers, getUserById } = useContext(UserContext)
+    const [user, setUser] = useState({})
     const [friend, setFriend] = useState({})
     const currentUser = sessionStorage.getItem("nutshell_user")
     const history = useHistory()
     
+    
     const friendDelete = () => {
         
-        const allFriends = friends.filter(f => parseInt(f.currentUserId) === parseInt(currentUser))
-        const isFriend = allFriends.find(af => parseInt(af.friendUserId) === parseInt(userInstance.id)) 
-        const id = isFriend.id
-        deleteFriend(id)
-        .then(() => {
-            history.push("/friends")
-        })
+        if (window.confirm("Delete Friend?")) {
+            const userFriends = friends.filter(f => parseInt(f.currentUserId) === parseInt(currentUser))
+            const relationship = userFriends.find(af => parseInt(af.friendUserId) === parseInt(userInstance.id)) 
+            const id = relationship.id
+            deleteFriend(id)
+            .then(() => {
+                history.push("/friends")
+            })
+        } else {
+        }
     }
     
     
@@ -34,35 +40,33 @@ export const UserCard = ({ userInstance }) => {
 
     const handleAddFriend = () => {
         
-        newFriend({            
-            currentUserId: parseInt(currentUser),
-            friendUserId: parseInt(userInstance.id)            
-        })
-            .then(() => history.push("/friends"))
+        if (window.confirm("Add to Friends?")) {
+            
+            newFriend({            
+                currentUserId: parseInt(currentUser),
+                friendUserId: parseInt(userInstance.id)            
+            })
+                
+                .then(() => {
+                    history.push("/friends")
+            })
+        } else {
+
+        }
+
     }
     
 
-    const friendshipId = () => {
-        
-        const userFriends = friends.filter(f => f.currentUserId === parseInt(currentUser))
-        const relationship = userFriends.find(uf => uf.friendUserId === parseInt(userInstance.id))
-        console.log(relationship)
-        return (
-            relationship
-        )
-    } 
 
 
-    const FriendDeleteButton = () => {
-        
+    const FriendDeleteButton = () => { 
             return <>
             <button onClick={friendDelete} className="button">Delete</button>
-            
-            </>
-            
-        
+            </>     
     }
      
+
+
     const AddFriendButton = () => {
 
         if (parseInt(currentUser) !== parseInt(userInstance.Id)) {
@@ -75,9 +79,8 @@ export const UserCard = ({ userInstance }) => {
     }
     
     const allFriends = friends.filter(f => parseInt(f.currentUserId) === parseInt(currentUser))
-    console.log(allFriends)
     const isFriend = allFriends.find(af => parseInt(af.friendUserId) === parseInt(userInstance.id))    
-    console.log(isFriend)
+
     
     return (
             

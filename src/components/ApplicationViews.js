@@ -23,9 +23,21 @@ export const ApplicationViews = () => {
 
   return (
     <>
-      <Route exact path="/">
-        {/* Render the component for list of friends */}
-      </Route>
+
+
+
+      <TaskProvider>
+        <EventProvider>
+          <ArticleProvider>
+            <Route exact path="/">
+              <ArticleList />
+              <EventList />
+              <TaskList />
+            </Route>
+          </ArticleProvider>
+        </EventProvider>
+      </TaskProvider>
+
       <FriendProvider>
         <UserProvider>
           <Route path="/friends">
