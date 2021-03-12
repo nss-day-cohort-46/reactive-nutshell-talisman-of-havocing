@@ -12,14 +12,14 @@ export const WeatherProvider = (props) => {
         return fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName},${stateCode}us&units=imperial&appid=${settings.weatherKey}`)
             .then(res => res.json())
             .then(parsedRes => {
-                console.log(parsedRes.list)
-                setForecast(parsedRes.list)
+                console.log(parsedRes)
+                setForecast(parsedRes)
             })
     }
 
     return (
         <WeatherContext.Provider value={{
-            forecast, getWeather
+            forecast, getWeather, setForecast
         }}>
             {props.children}
         </WeatherContext.Provider>

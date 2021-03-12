@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { WeatherModal } from '../weather/WeatherModal'
-import { WeatherContext } from '../weather/WeatherProvider'
 import './Event.css'
 import { EventForm } from './EventForm'
 import { EventContext } from "./EventProvider"
@@ -15,7 +14,7 @@ export const EventCard = ({ eventObj, eventCounter }) => {
     const [openWeather, setOpenWeather] = useState(false)
     const loggedInUserId = parseInt(sessionStorage.getItem("nutshell_user"))
     const { deleteEvent } = useContext(EventContext)
-    const { getWeather } = useContext(WeatherContext)
+
     let headerInputStyle = {}
     let paragraphInputStyle = {}
     let sectionInputStyle = {
@@ -60,10 +59,6 @@ export const EventCard = ({ eventObj, eventCounter }) => {
     const handleClickOpenWeather = () => {
         setOpenWeather(true)
     }
-
-    useEffect(() => {
-        getWeather(eventObj.city, eventObj.state)
-    }, [])
 
     return (
         <>

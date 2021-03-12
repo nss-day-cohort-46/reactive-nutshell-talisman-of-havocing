@@ -38,7 +38,6 @@
 }
 
 .modal--content {
-    background-color: rgb(255,255,255);
     border: 1px solid black;
     width: 80%;
     max-width: 700px;
@@ -97,4 +96,10 @@
 
 #venue {
     margin-bottom: 10px;
+}
+
+.openWeatherButton {
+    background-color: whitesmoke;
+    border: 1px gainsboro solid;
+    border-radius: 5px;
 }
