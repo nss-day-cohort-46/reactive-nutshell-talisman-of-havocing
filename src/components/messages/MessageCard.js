@@ -42,18 +42,19 @@ export const MessageCard = ({ messageInstance }) => {
     const currentUser = sessionStorage.getItem("nutshell_user")
 
     const { newFriend } = useContext(FriendContext)
+
     const handleAddFriend = () => {
-        //disable the button - no extra clicks
-        
-          //POST - add
-        newFriend({
-            
-            currentUserId: parseInt(currentUser),
-            friendUserId: parseInt(messageInstance.userId)
-            
-        })
-            .then(() => history.push("/messages"))
+        if (window.confirm("Add to Friends?")) {
+
+            newFriend({
+                currentUserId: parseInt(currentUser),
+                friendUserId: parseInt(messageInstance.userId)      
+            })
+                .then(() => history.push("/messages"))
+    } else {
+
     }
+}
     
     const EditDelete = () => {
         
