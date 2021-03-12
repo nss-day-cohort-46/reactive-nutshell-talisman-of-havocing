@@ -6,7 +6,7 @@ import "./Article.css"
 export const Article = ({article}) => {
     return (
     <section className="article">
-        <h4 className="article__title">
+        <h4 className="article__titleLink">
         <Link to={`/articles/detail/${article.id}`}>
             { article.title }
         </Link>

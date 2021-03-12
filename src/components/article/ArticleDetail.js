@@ -36,8 +36,8 @@ export const ArticleDetail = (currentUserId) => {
         <div className="article__timestamp">Timestamp: {article.timestamp}</div>
         {parseInt(sessionStorage.getItem("nutshell_user")) === article.userId ?
         <div>
-            <button onClick={handleRelease}>Delete Article</button>
-            <button onClick={() => { history.push(`/articles/edit/${article.id}`) }}>Edit</button>
+            <button className="deleteArticleButton" onClick={handleRelease}>Delete</button>
+            <button className="editArticleButton" onClick={() => { history.push(`/articles/edit/${article.id}`) }}>Edit</button>
         </div>
         : ""}
         </div>
