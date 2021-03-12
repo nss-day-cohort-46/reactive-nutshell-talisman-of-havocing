@@ -1,0 +1,7 @@
+.Home {
+    display: flex;
+}
+
+.mainBodyHome {
+    flex-basis: 70%;
+}

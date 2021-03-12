@@ -18,26 +18,15 @@ import { FriendProvider } from "./friends/FriendProvider"
 import { UserSearch } from "./friends/UserSearch"
 import { FriendList } from "./friends/FriendList"
 import { TaskForm } from './tasks/TaskForm'
+import { Home } from './Home'
 
 export const ApplicationViews = () => {
 
   return (
     <>
-
-
-
-      <TaskProvider>
-        <EventProvider>
-          <ArticleProvider>
-            <Route exact path="/">
-              <ArticleList />
-              <EventList />
-              <TaskList />
-            </Route>
-          </ArticleProvider>
-        </EventProvider>
-      </TaskProvider>
-
+      <Route exact path="/">
+        <Home />
+      </Route>
       <FriendProvider>
         <UserProvider>
           <Route path="/friends">
