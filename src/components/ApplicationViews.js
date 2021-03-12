@@ -20,7 +20,7 @@ import { FriendList } from "./friends/FriendList"
 import { TaskForm } from './tasks/TaskForm'
 
 export const ApplicationViews = () => {
-
+  
   return (
     <>
 
@@ -67,7 +67,9 @@ export const ApplicationViews = () => {
         </Route>
         <Route exact path="/articles">
           {   /* Render the component for news articles */}
+          <ArticleSearch />
           <ArticleList />
+          
           {/* Render the component for list of friends */}
         </Route>
         <Route path="/articles/create">
@@ -81,13 +83,14 @@ export const ApplicationViews = () => {
         </Route>
       </ArticleProvider>
       <TaskProvider>
-        <Route path="/tasks">
+      <Route path="/tasks/create">
+          <TaskForm />
+        </Route>
+        <Route path="/tasks" >
           <TaskList />
           {/* Render the component for the user's tasks */}
         </Route>
-        <Route path="/tasks/create">
-          <TaskForm />
-        </Route>
+       
         <Route exact path="/tasks/edit/:taskId(\d+)">
           <TaskForm />
         </Route>

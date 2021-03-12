@@ -1,25 +1,49 @@
+/* html, body, #root{
+    background-color: #f7d1cd;
+} */
+.nav-link{
+    color:#bb8588;
+}
+
+
 .tasks{
     border: 1px solid black;
+    border-radius: 10px;
     margin: 5em;
     padding: 2em;
     display: flex;
-    width: 50%;
+    width: 300px;
     justify-content: space-between;
     flex-direction: column;
+    background-color:#e8c2ca;
+}
+.tasks button{
+    background-color: #bb8588;
+    border-radius: 10px;
 }
 .task__checkbox{
     display: flex;
     
+    
+}
+.task__checkbox input{
+    color: #735d78;
 }
 .task{
     border: .5px dotted black;
+    border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     padding: .5em;
+    margin:.5em;
     justify-content: space-between;
     flex-basis: 28%;
     align-items: baseline;
+    background-color:#d1b3c4;
+    
+
+    
 }
 #taskComplete{
     width: 1.4em;
@@ -32,9 +56,17 @@
 
 .taskForm{
     border: 1px solid black;
+    border-radius: 10px;
     margin: 5em;
     padding: .3em;
     /* display: flex; */
-    width: 50%;
+    width: 300px;
+    background-color: #e8c2ca;
 
+}
+.taskForm input{
+    background-color: #d1b3c4;
+}
+.taskForm button{
+    background-color: #bb8588;
 }
