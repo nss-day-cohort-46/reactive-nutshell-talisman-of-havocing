@@ -14,9 +14,10 @@ export const UserCard = ({ userInstance }) => {
     
     const friendDelete = () => {
         
-        const allFriends = friends.filter(f => parseInt(f.currentUserId) === parseInt(currentUser))
-        const isFriend = allFriends.find(af => parseInt(af.friendUserId) === parseInt(userInstance.id)) 
-        const id = isFriend.id
+        const userFriends = friends.filter(f => parseInt(f.currentUserId) === parseInt(currentUser))
+        debugger
+        const relationship = userFriends.find(af => parseInt(af.friendUserId) === parseInt(userInstance.id)) 
+        const id = relationship.id
         deleteFriend(id)
         .then(() => {
             history.push("/friends")
