@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react'
+import { WeatherModal } from '../weather/WeatherModal'
 import './Event.css'
 import { EventForm } from './EventForm'
 import { EventContext } from "./EventProvider"
@@ -10,8 +11,10 @@ export const EventCard = ({ eventObj, eventCounter }) => {
     const dayOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     const eventDay = dayOfTheWeek[theDate.getDay()]
     const [openForm, setOpenForm] = useState(false)
+    const [openWeather, setOpenWeather] = useState(false)
     const loggedInUserId = parseInt(sessionStorage.getItem("nutshell_user"))
     const { deleteEvent } = useContext(EventContext)
+
     let headerInputStyle = {}
     let paragraphInputStyle = {}
     let sectionInputStyle = {
@@ -53,18 +56,27 @@ export const EventCard = ({ eventObj, eventCounter }) => {
     const handleClickDeleteEvent = () => {
         deleteEvent(eventObj.id)
     }
+    const handleClickOpenWeather = () => {
+        setOpenWeather(true)
+    }
 
     return (
         <>
             <section style={sectionInputStyle}>
-                <h4 style={headerInputStyle} className="eventCardH4">{eventObj.name}</h4>
-                <p style={paragraphInputStyle} className="eventCardP">{eventDay} - {eventDate}</p>
-                <p style={paragraphInputStyle} className="eventCardP">{eventTime} @ {eventObj.location}</p>
+                <div className="eventCardData">
+                    <div>
+                        <h4 style={headerInputStyle} className="eventCardH4">{eventObj.name}</h4>
+                        <p style={paragraphInputStyle} className="eventCardP">{eventDay} - {eventDate}</p>
+                        <p style={paragraphInputStyle} className="eventCardP">{eventTime} @ {eventObj.venue} in {eventObj.city}, {eventObj.state}</p>
+                    </div>
+                    <button className="openWeatherButton" onClick={handleClickOpenWeather}>Weather</button>
+                </div>
                 <div>
                     {editButton ? <button style={buttonInputStyle} className="editEventButton" onClick={handleClickAddEvent}>edit</button> : ""}
                     {editButton ? <button style={buttonInputStyle} className="deleteEventButton" onClick={handleClickDeleteEvent}>delete</button> : ""}
                 </div>
                 {openForm && <EventForm setOpenForm={setOpenForm} eventId={eventObj.id} />}
+                {openWeather && <WeatherModal setOpenWeather={setOpenWeather} eventObj={eventObj} />}
             </section>
         </>
     )

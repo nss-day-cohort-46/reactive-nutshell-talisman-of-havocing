@@ -38,7 +38,6 @@
 }
 
 .modal--content {
-    background-color: rgb(255,255,255);
     border: 1px solid black;
     width: 80%;
     max-width: 700px;
@@ -76,3 +75,31 @@
     text-decoration: wavy;
 }
 
+.eventCardData {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.eventFormLocationCityState {
+    display: flex;
+}
+
+#city {
+    flex-basis: 60%;
+}
+
+#state {
+    margin-left: 10px;
+    flex-basis: 20%;
+}
+
+#venue {
+    margin-bottom: 10px;
+}
+
+.openWeatherButton {
+    background-color: whitesmoke;
+    border: 1px gainsboro solid;
+    border-radius: 5px;
+}
